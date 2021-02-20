@@ -43,9 +43,22 @@ ___
 ## HTML의 Box 구조
 ___
 네이버,다음,Google 등 유명 포털사이트들은 사실 많은 Box 구조로 이루어져 있다.   
-모든 사이트들이 모두 같은 Box구조를 사용하는 것은 아니지만, 모두를 아우르는 공통점이 존재한다.  
+모든 사이트들이 모두 같은 구조를 사용하는 것은 아니지만, 공통점은 존재한다.  
 
-![screensht](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tutorialwithexample.com%2F2020%2F04%2Fhtml-layout.html&psig=AOvVaw1RM17i80mHek6a6HMi6uol&ust=1613893197205000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKD9oej69-4CFQAAAAAdAAAAABAD)
+<img src="https://1.bp.blogspot.com/-byyR6UhzRlw/XqPR9QUH12I/AAAAAAAACf8/_h6ITaQ45h0dazPFuifNqe7OSMFNbZopgCLcBGAsYHQ/s1600/HTML%2Blayout.png" width="80%">
+
+>솔직히 위 구조를 div 태그나 span 태그로 모두 대체해도 사용자에게 표시되는 컨텐츠는 문제없이 표시되지만, *코드의 가독성* 과 페이지의 *논리적 구조* 에 큰 문제가 생기므로 위 태그를 이용해 구조를 갖춰나가자.
+
+## HTML 과 CSS의 Box-Model
+___
+<img src="https://media.vlpt.us/images/taeha7b/post/ecde13b6-b3f1-4142-b932-dc8e553d42e2/Screenshot%20from%202020-07-22%2008-18-14.png">
+
+Box-Model에서 화면을 사용하는 크기에 따라 두 가지로 나뉘는 요소가 존재한다.
+>Block Element : 하나의 요소가 한 줄 전체를 box로 사용하는 요소   
+>Inline Element : 서로 다른 요소가 한 줄을 같이 사용하는 요소
+
+
+
 
 
 
