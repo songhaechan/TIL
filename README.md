@@ -1,4 +1,7 @@
 # Today I Learn
 
-## HTML
+## WEB-FrontEnd
+### HTML
 - [HTML 기초](https://github.com/songhaechan/TIL/blob/main/HTML/HTML.md)
+### JavaScript
+- [Vanilla JS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/JS.md)
