@@ -10,4 +10,4 @@ ___
 ### JavaScript
 - [Vanilla JS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/JS.md)
 ### CSS
-- [CSS]
+- [CSS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/CSS/CSS.md)
