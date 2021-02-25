@@ -8,6 +8,6 @@ ___
 ### HTML
 - [HTML](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/HTML/HTML.md)
 ### JavaScript
-- [Vanilla JS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/JS.md)
+- [Vanilla JS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/Vanilla%20JS/JS.md)
 ### CSS
 - [CSS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/CSS/CSS.md)
