@@ -10,8 +10,7 @@ ___
 Flex-box에서 가장 중요한 점은 두 가지의 축이 존재한다는 점이다.
 가령 item들이 가로 배열 상태라면 가로 축이 **main axis**(주 축)가 되고, 그에 해당하는 수직 축이 **cross axis**(수직 축)이 된다. 그에 대한 역도 성립한다.   
 
-<img src=".\img\1.png">    
-
+<img src=".\img\1.png">
 <img src=".\img\2.png">
 
 - flex-direction : 정렬할 방향을 정한다. ( row, column )
