@@ -98,5 +98,3 @@ C언어 구조체에서 멤버변수를 참조할때와 비슷하다.
 ```js
 Info.favMovie[0].name; // Oldboy
 ```
-
-
