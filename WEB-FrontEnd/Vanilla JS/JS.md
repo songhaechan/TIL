@@ -98,3 +98,26 @@ C언어 구조체에서 멤버변수를 참조할때와 비슷하다.
 ```js
 Info.favMovie[0].name; // Oldboy
 ```
+
+## DOM
+
+---
+
+무심코 `document.querySelector("something")` 이라는 코드를 쓰며 DOM이란 개념은 정확히 들여다보지 않았다.
+
+DOM이란 Document Object Model 의 약자로, 번역하면 문서객체모델... 이 된다.
+
+간단히 말하자면 CSS에서 class에 접근하기위해서는 `.something{}` 으로 사용한다.  
+하지만 JS는 DOM이라는 모델을 사용해 html의 태그,id,class에 접근한다.
+
+```js
+var header = document.createElement("h2");
+var textNode = document.createTextNode("Hello DOM");
+header.appendChild(textNode);
+```
+
+h2태그를 생성하고 header에 저장하고, textNode에 'Hello DOM'을 저장하고 header 에 자식노드를 추가하는 코드이다.
+
+이처럼 html에있는 class id tag를 객체로서 동적으로 할당하고 할당받는 것이 DOM이다.
+
+더 간단히 요약하자면, JS에서 HTML tag id class를 다루게해주는 도구라고 생각하면되겠다.
