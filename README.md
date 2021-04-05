@@ -8,9 +8,7 @@
 
 ## CS
 
-### Data Structure
-
-### Internet
+### [Data Structure](./DataStructure/DataStructure.md)
 
 ---
 
@@ -18,15 +16,15 @@
 
 ### HTML
 
-- [HTML](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/HTML/HTML.md)
+- [HTML](./WEB-FrontEnd/HTML/HTML.md)
 
 ### JavaScript
 
-- [Vanilla JS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/Vanilla%20JS/JS.md)
+- [Vanilla JS](./WEB-FrontEnd/VanillaJS/JS.md)
 
 ### CSS
 
-- [CSS](https://github.com/songhaechan/TIL/blob/main/WEB-FrontEnd/CSS/CSS.md)
+- [CSS](./WEB-FrontEnd/CSS/CSS.md)
 
 ---
 
