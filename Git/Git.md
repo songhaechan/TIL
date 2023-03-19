@@ -50,6 +50,7 @@ develop은 master브랜치에서 배포한 후에 바로 develop브랜치를 새로 생성하고 이 브�
 엄밀히 말하면 develop에서 개발을 진행하는게 아니라 feature에서 개발한 조각 조각들을 병합(merge)하는 브랜치다.
 
 feature은 작은 기능들을 A개발자 B개발자 C개발자가 서로 나누어 개발하다가 해당 기능이 완성되면 develop브랜치로 merge한다.
+그리고 feature브랜치는 반드시 master브랜치에서 생성해야한다. develop은 개발내용이 master에 반영되지않을 가능성이 있기때문이다.
 
 release는 master브랜치로 보내기이전에 최종적으로 오류를 검증하고 master브랜치로 보내게된다.
 
