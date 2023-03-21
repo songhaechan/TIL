@@ -150,6 +150,82 @@ public static Boolean valueOf(boolean b){
 
 어렵다. 매우 어렵다. 공부를 열심히 하자.
 
+item #2 : 생성자에 매개변수가 많다면 빌더패턴을 고려하라
+
+생성자에 매개변수가 많으면 외부에서 생성자를 호출하고 객체를 생성할 때 내가 넘겨주는 매개변수가 어떤 멤버에 값을 넘겨주는지 알기 어렵다.
+
+매개변수가 2-3개라면 문제가 없겠지만, 많아질 경우 코드를 읽기 불편하고, 작성할 때에도 파악이 어려워진다.
+
+이 때 빌더패턴이란 것을 고려하자.
+
+우선 빌더는 사용할 클래스의 안에 public static 클래스로 내부클래스를 생성해준다.
+
+```java
+public static class Builder {
+        // 필수 매개변수
+        private final int servingSize;
+        private final int servings;
+
+        // 선택 매개변수 - 기본값으로 초기화한다.
+        private int calories      = 0;
+        private int fat           = 0;
+        private int sodium        = 0;
+        private int carbohydrate  = 0;
+
+        public Builder(int servingSize, int servings) {
+            this.servingSize = servingSize;
+            this.servings    = servings;
+        }
+```
+
+필수 매개변수는 빌더의 생성자로 넣어주도록하고 builder클래스 내부에 setter메서드를 생성한다.
+
+```java
+        public Builder calories(int val)
+        { calories = val;      return this; }
+        public Builder fat(int val)
+        { fat = val;           return this; }
+        public Builder sodium(int val)
+        { sodium = val;        return this; }
+        public Builder carbohydrate(int val)
+        { carbohydrate = val;  return this; }
+
+        public NutritionFacts build() {
+            return new NutritionFacts(this);
+        }
+```
+
+위 메서드들의 반환타입을 보면 **Builder를 반환하면서 연쇄적으로 호출**이 가능하다.
+
+생성자 호출 후 setter메서드를 연쇄적으로(선택적으로) 호출하고 마지막에 반환타입이 NutritionFacts인 build()메서드를 호출해 최종적으로 원하는 인스턴스를 반환한다.
+
+```java
+return new NutritionFacts(this);
+```
+
+여기서 this는 Builder 객체를 의미하고 전달받은 Builer객체를 NutritionFacts의 private생성자에 전달한다.
+
+```java
+private NutritionFacts(Builder builder) {
+        servingSize  = builder.servingSize;
+        servings     = builder.servings;
+        calories     = builder.calories;
+        fat          = builder.fat;
+        sodium       = builder.sodium;
+        carbohydrate = builder.carbohydrate;
+    }
+```
+
+해당 생성자는 외부에 노출이 불필요하므로 private으로 생성하고 위에서 설명했듯이 builder 인스턴스를 받아와 NutritionFacts의 멤버를 설정한다.
+
+```java
+        NutritionFacts cocaCola = new NutritionFacts.Builder(240,8).calories(100).sodium(35).carbohydrate(27).build();
+```
+
+이제 어떤 멤버에 어떤 값을 지정할 지가 명확해졌다.
+
+
+
 
 
 
