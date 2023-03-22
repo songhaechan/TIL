@@ -47,3 +47,31 @@ DAO, VO, DTO
 열심히 공부해서 알아놓자
 
 ----
+@Configuartion
+---
+스프링컨테이너에 빈으로 등록하는 방법은 @Controller 어노테이션같은 @Component 어노테이션을 붙여줘도 되지만, 다형성을 이용해서 유연한 프로그래밍을 위해 자바코드로 직접 빈을 등록해 줄 수 있다.
+
+클래스레벨에 @Configuration을 붙여주면 해당 클래스는 자바 빈에 등록될 객체들을 모아놓은 클래스라는것을 알려주게된다.
+
+```java
+@Configuration
+public class SpringConfig {
+
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }
+
+    @Bean
+    public MemberRepository memberRepository(){
+        return new MemorryMemberRepository();
+    }
+}
+```
+
+위와 같이 메서드에 생성자로 객체를 생성해주면 이 인스턴스를 자바 빈에 등록해주게된다. @Bean에 추가로 값을 넘겨줘서 Bean id를 설정해주는 방법도 있다.
+
+추가로 @Controller로 직접 빈으로 등록하고 @Autowired로 의존관계를 주입받을 수 있는데 이 외에도 필드 주입 setter주입이 있지만 보통 생성자로 주입받는것이 좋다.
+
+필드 주입은 나중에 값을 변경해줄 수가 없고, setter는 public메서드로 선언해야하기때문에 외부에 노출되므로 좋지못하다.
+
