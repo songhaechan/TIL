@@ -228,6 +228,7 @@ private NutritionFacts(Builder builder) {
 
 ---
 item #4 : 인스턴스화를 막으려거든 private생성자를 사용해라
+---
 
 내가 생성한 클래스의 인스턴스화를 막고싶은 경우가 생긴다고하는데 아직은 와닿지는 않는다.
 
