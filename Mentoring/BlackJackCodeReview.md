@@ -108,17 +108,16 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 
     우리가 흔히 작성하는 .java파일은 JVM이 인식할 수 있는 .class파일로 컴파일된다.
 
-    즉 JavaCompiler는 .java를 JavaByteCode로 .class파일을 변환해준다.
-    > CLI로 Java를 컴파일할 떄 javac라는 명령어를 사용하는데 이 때 javac가 .java 를 .class 로 컴파일해준다.
+    즉 JavaCompiler는 .java를 JavaByteCode로 .class파일로 변환해준다.
 
-    .class는 JVM위에 올라가 OS가 인식할 수 있는 기계어로 다시 변환하여 OS(cpu)가 인식할 수 있게된다. (JIT Compiler)
+    .class파일은 JVM위에 올라가 OS가 인식할 수 있는 기계어로 다시 변환하여 OS(cpu)가 인식할 수 있게된다. (JIT Compiler)
 
     ![img](./jvm.png)
 
     JVM의 내부 구조는 위 그림과 같다.
 
     **Class Loader** 는 .class 파일을 로드하고 링크하는 역할을 한다.
-    런타임시에 새로운 클래스를 동적으로 로드하고 링크해준다. 또한 클래스로더는 .class
+    런타임시에 새로운 클래스를 동적으로 로드하고 링크해준다.
 
     **Excution** 은 클래스를 실행시킨다. 다시 말해 .class파일을 클래스로더가 **Runtime Data Area**에 올려주면 위에 언급한 JIT컴파일러가 (JavaByteCode를)기계어로 번역해준다. 많이 들어보았던 GC도 보인다. GC는 사용하지않는 메모리를 수거해준다.
 
