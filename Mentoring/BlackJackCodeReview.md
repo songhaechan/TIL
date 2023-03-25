@@ -164,8 +164,60 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 
     이렇게 JVM은 인터프리터방식과 중복되는 코드들을 캐싱하여 실행하는 방식을 채택하여 기존의 인터프리터방식만을 가지는 컴파일러보다는 좋은 성능을 가진다.
 
+2. Integer Cache
 
+    멘토님께서 신선한 충격을 주셨다.
 
+    ```java
+    Integer l1 = 100;
+    Integer l2 = 100;
+
+    Integer l3 = 200;
+    Integer l4 = 200;
+
+    if(l1 == l2){
+        System.out.println("l1==l2");
+    }
+    if(l1.equals(l2)){
+        System.out.println("l1.equals(l2)");
+    }
+
+    if(l3==l4){
+        System.out.println("l3==l4");
+    }
+    if(l3.equals(l4)){
+        System.out.println("l3.equals(l4)");
+    }
+    ```
+        결과:l1==l2
+            l1.equals(l2)
+            l3.equals(l4)
+
+    equlas 메서드는 값이 같은지를 boolean타입으로 반환한다.
+
+    당연히 l1과l2의 값은 같고 l3와l4의 값도 같으니 결과의 두번째 세번째 줄은 이해가 간다.
+
+    그런데 왜 l1==l2는 true지만 l3==l4는 false일까?
+
+    이유를 알기위해선 Integer클래스가 값을 어떻게 저장하는지 알아야한다.
+
+    ```java 
+        public static Integer valueOf(int i) {
+        if (i >= IntegerCache.low && i <= IntegerCache.high)
+            return IntegerCache.cache[i + (-IntegerCache.low)];
+        return new Integer(i);
+        }
+    ```
+
+    Integer l1 = 100; 으로 작성하면 위 valueOf메서드로 넘어가게된다.
+
+    IntegerCache.low = -127 IntegerCache.hight = 128 로 정적멤버로 이루어져있다.
+
+    즉 i의 값이 -127~128이면 캐시에 저장해놓고 재사용하게되고 그 이외의 값이 들어오면 객체를 새로생성해서 반환해준다.
+
+    그래서 100을 할당한 l1,l2는 ==연산이 true지만 128을 넘는 200을 할당한 l3,l4는 false를 반환한다.
+
+    이것을 Integer Cache라 부른다.
 
 
 
