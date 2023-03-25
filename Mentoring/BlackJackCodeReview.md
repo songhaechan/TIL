@@ -145,6 +145,8 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 ---
 
 1. JIT 컴파일러
+    ---
+
 
     저번주 TIL에서 JVM에대해 알아보았다. .java파일이 자바바이트코드로 변환되어 .class파일을 만들고 .class파일은 **JIT컴파일러**에의해 기계어로 변환된다.
 
@@ -164,7 +166,10 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 
     이렇게 JVM은 인터프리터방식과 중복되는 코드들을 캐싱하여 실행하는 방식을 채택하여 기존의 인터프리터방식만을 가지는 컴파일러보다는 좋은 성능을 가진다.
 
+---
+
 2. Integer Cache
+    ---
 
     멘토님께서 신선한 충격을 주셨다.
 
@@ -219,6 +224,32 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 
     이것을 Integer Cache라 부른다.
 
+---
+
+3. Object의 Equality 와 Identity
+    ---
+    Integer Cache를 알아보며 객체의 값이 동일한지 주소값이 동일한지 알아보았다.
+
+    객체의 Equality는 Value(값)의 동일함을 뜻한다.
+
+    객체의 Identity는 주소의 동일함을 뜻한다.
+
+    ```java
+        Integer a = new Integer(1);
+        Integer b = new Integer(1);
+    ```
+    Equality에 따르면 a와 b는 같다. Value(1)가 같기때문이다.
+    Identity에 따르면 두 객체는 다른 주소를 가지므로 같지 않다.
+
+    >Integer Cache에 따르면 1은 Cache되야하는게 아닌가 의문을 가질 수 있겠지만, 위 코드는 new연산자를 사용해서 인스턴스를 새롭게 생성했기때문에 캐시되지않는다.
+
+    ```java 
+        Integer a = new Integer(1);
+        Integer b = a;
+    ```
+    이 경우엔 어떨까? a와b의 값도같고 주소도 같다.
+
+    정리하자면 Identity는 Equality를 보장하지만 Equality는 Identity를 보장하지 않는다.
 
 
 
