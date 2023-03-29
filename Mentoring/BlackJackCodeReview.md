@@ -251,5 +251,16 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 이해하면 프레임워크에대
 
     정리하자면 Identity는 Equality를 보장하지만 Equality는 Identity를 보장하지 않는다.
 
+4. Checked Exception & Unchecked Exception
+    ---
+    Exception클래스를 상속받는 클래스 중에서 Runtime Exception을 포함한 하위클래스를 Unchecked Exception이라고한다.
+
+    Unchecked Exception 실행시 발생하는 예외로 예외처리를 강요하지않는다. 만약 예외가 발생할 수 있는 모든 경우에대해 예외처리를 강요하게되면 개발자들은 배열하나를 사용하는데도 예외처리를 해주어야된다...
+
+    그에 반해 Checked Exception은 예외처리가 필수적이다. 컴파일 단계에서부터 예외처리를 강요해서 컴파일전부터 개발자는 예외처리를 해주어야한다.
+
+    그리고 또 한가지 차이점은 Checked Exception은 롤백하지않고 Unchecked Exception은 롤백한다는 점이다.
+
+    롤백이란 수행된 작업을 반영하지않는것을 말한다.
 
 
