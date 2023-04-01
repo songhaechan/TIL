@@ -296,6 +296,112 @@ item + : 직렬화 역직렬화 리플렉션
 
     프레임워크에서 자주 쓰이는 개념으로, 프레임워크는 우리가 생성하는 클래스를 작성시점에 알지 못하므로 런타임시에 동적으로 클래스의 정보를 추출할 수 있게해준다.
 
+---
+
+item # 5 : 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라.
+---
+아이템 5의 첫문장 "클래스는 하나 이상의 자원에 의존한다". 이 문장이 의미하는 바는 객체지향과 디자인패턴에서 봤듯이 하나의 클래스는 다른 클래스의 인스턴스를 생성에 의존한다는 의미다.
+
+```java
+    public class SpellChecker{
+        private static final Lexicon dictionary = new KoreanDictionary();
+        private SpellChecker(){};
+        // public static method ...
+    }
+```
+SpellChecker클래스는 Lexicon클래스에 의존하고있다. 생성자도 private으로 막아서 싱글톤으로 생성했다.
+
+별다른 문제가 없어보이지만 사전은 영어사전 한글사전 일본어사전 등등 다양하게 존재하고 클래스내부에서 final 필드로 객체를 담고있기때문에 변경에 유연하지않다.
+
+사전을 정말 딱 하나 의존하고있다면 상관없겠지만 **다른 인스턴스를 다뤄야하는 경우**엔 의존객체주입을 사용하자.
+
+```java
+    public class SpellChecker{
+        private static final Lexicon dictionary;
+
+        public SpellChecker(Lexicon){
+            this.dictionary = dictionary;
+        };
+        // public static method ...
+    }
+```
+
+생성자를 통해서 외부에서 인스턴스를 받아와 사용할 수 있다. 받아온 인스턴스는 불변을 보장받고있기때문에 안전하기도하다.
+
+정적 유틸리티 클래스와 싱글턴이 좋지않다는게 아니라 책에서도 클래스가 자원을 하나이상 사용할 때에는 의존객체를 이용하여 유연성을 얻을 수 있다라고 되어있으니 적절하게 판단을 해야할 것 같다.
+
+**질문 p.29  이 패턴의 쓸만한 변형으로, 생성자에 자원 팩터리를 넘겨주는 방식이 있다.**
+
+---
+
+item # 6 : 불필요한 객체 생성을 피하라
+---
+불필요한 객체 ? 어떤 경우에 객체가 불필요해진다는 것일까?
+
+```java
+    String s = new String("java");
+```
+
+```java
+    String s = "java";
+```
+
+자바의 정석에서도 강조했던 내용이다. java라는 단어를 새롭게 객체로 생성해서 쓰는 방식이있고, 문자리터럴을 상수화하여 저장한 방식이 있다.
+
+굳이 같은 단어를 계속해서 새로운 객체로 만들 필요는 없다. 두 번째 방식은 재사용성이 매우 높다.
+
+이와같이 불필요한 객체를 생성하게되면 비용이 발생하게되고(성능상에서의 비용) 이러한 비용을 줄이는게 이번 장의 핵심 내용이다.
+
+```java
+    static boolean isRomanNumeralSlow(String s) {
+        return s.matches("^(?=.)M*(C[MD]|D?C{0,3})"
+                + "(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$");
+    }
+```
+이 메서드는 내부에서 정규표현식용 Pattern인스턴스를 생성하고 한 번 사용되면 버려진다. Pattern은 인스턴스 생성비용이 높다고 소개하고있다.
+
+이런 경우에 Pattern인스턴스를 내부에 불변으로 선언해놓고 재사용한다면 성능이 개선될 것이라는건 직관적으로도 와닿는다.
+```java
+    private static final Pattern ROMAN = Pattern.compile(
+            "^(?=.)M*(C[MD]|D?C{0,3})"
+                    + "(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$");
+
+    static boolean isRomanNumeralFast(String s) {
+        return ROMAN.matcher(s).matches();
+    }
+```
+
+Pattern인스턴스를 내부에서 한 번 생성하고 isRomanNumberalFast가 호출될때마다 재사용될 것이다.
+
+성능은 6.5배 정도 빨라진다!
+
+또 다른 예로 오토박싱을 예로들고있다.
+
+```java
+     private static long sum() {
+        Long sum = 0L;
+        for (long i = 0; i <= Integer.MAX_VALUE; i++)
+            sum += i;
+        return sum;
+    }
+```
+이 예시를 보고 과연 정말 이렇게 코드를 작성하는 일이 있을까? 싶었다.
+
+매우 극단적인 비효율성을 보여준다. Long 객체는 for문에 의해 231개가 생성된다.
+
+하지만 한 가지 주의해야할 점이있다. 아이템 50에 방어적복사라는 개념이 나오는데 방어적복사는 객체의 재사용이 불러오는 피해를 제시하고 있다.
+
+이번 아이템과 상당히 대조적인 아이템인데 핵심은 객체가 새로워야하느냐 재사용해야하느냐에 있는데 이 기준을 구분하는 일은 상당히 어려울것같다... 책에서도 매번 내가 생성하는 인스턴스의 생성비용을 정확하게 측정하는 일은 어렵다고 소개한다.
+
+경험이 쌓인다면 생길거라 기대해본다.
+
+---
+
+item # 7 : 다 쓴 객체 참조를 해체하라
+---
+
+
+
 
 
 
