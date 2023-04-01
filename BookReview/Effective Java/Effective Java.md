@@ -466,7 +466,75 @@ null처리를 해주게되면 GC는 메모리회수대상으로 인식하게되므로 메모리의 누수가 발�
 
 item # 8 : finalizer와 cleaner 사용을 피하라
 ---
+finalizer는 자바 9에서 deprecated로 지정되었다. 그 대안으로 cleaner를 제시했지만 이 책에선 여전히 두 메서드 모두 예측불가능하고 성능상에 심각한 문제를 일으킨다고 강조한다.
 
+자바는 GC에의해 메모리를 수거해간다. finalizer나 cleaner도 그저 GC에 해당 자원이 회수대상임을 알려줄 뿐 우선순위에 어떤 영향도 없다.
+
+스레드를 배울 때에도 비슷한 내용이 있었다. 스레드는 OS 스케쥴러가 할당한 우선순위에따라서 실행되기때문에 스레드에 직접 우선순위를 지정해줘봐야 결국은 OS스케쥴러의 알고리즘이 제어한다.
+
+같은 맥락으로 메모리 회수는 전적으로 JVM 알고리즘의 역할이고 finalizer와 cleaner는 회수대상을 알려주는 것 그 이상의 일을 할 수가 없다.
+
+특히 finalizer는 예외가 발생해도 무시되고 처리할 작업이 남아있어도 종료된다.
+그런데 미완성인 객체를 다른 스레드가 사용하려한다면 심각한 오류를 낳을 것이다.
+
+그나마 cleaner는 자신의 스레드를 통제한다.
+
+이런 문제점들을 안고있기때문에 그 대안으로 AutoCloseable를 구현ㄴ하고 close메서드를 호출해준다. close로 해당자원을 이제 더이상 사용하지않는 자원이라 명시해준다. finalizer와는 달리 예외를 발생시키기때문에 적절하게 예외처리를 통해서 작성해주면된다.
+
+그럼에도 cleaner와 finalizer가 존재하는 이유에대해 알아보면, 개발자가 close를 작성하지않았다면 그에대한 안전망으로 늦게나마 회수를 해달라는 요청을 할 수 있다는 점이다.
+
+정리 : finalizer는 사용하지말고(java 9이후부터) cleaner는 네이티브 자원 회수용으로만 사용 (이 경우에라도 자원의 중요성과 성능저하는 감수해야한다.)
+
+---
+item # 9 : try-finally보다는 try-with-resources를 사용하라
+---
+
+try-finally의 예제코드부터 살펴보자.
+
+```java
+    static void copy(String src, String dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        try {
+            OutputStream out = new FileOutputStream(dst);
+            try {
+                byte[] buf = new byte[BUFFER_SIZE];
+                int n;
+                while ((n = in.read(buf)) >= 0)
+                    out.write(buf, 0, n);
+            } finally {
+                out.close();
+            }
+        } finally {
+            in.close();
+        }
+    }
+```
+
+위 코드에서는 InputStream 과 OutputStream 으로 자원을 두가지를 사용하고있다.
+
+책에서는 기기에 물리적문제가 생겨 read메서드가 실패하고 당연히 close도 실패한다는 가정을 하고있다.
+
+즉 try와 finally블록 모두에서 예외가 발생하는 경우 두번째 예외가 첫번째 예외를 삼키고 첫번째 예외에관한 어떤 정보도 남기지않는다.
+
+try-with-resources를 이용해 개선한 코드를 보자.
+
+try-with-resources는 try블럭 끝에 도달하면 try()내부에있는 자원을 자동으로 닫아준다.
+
+```java
+    static void copy(String src, String dst) throws IOException {
+        try (InputStream   in = new FileInputStream(src);
+             OutputStream out = new FileOutputStream(dst)) {
+            byte[] buf = new byte[BUFFER_SIZE];
+            int n;
+            while ((n = in.read(buf)) >= 0)
+                out.write(buf, 0, n);
+        }
+    }
+```
+
+위 코드에서 개발자 입장은 read메서드에서의 예외가 중요하지 close에서 예외는 부차적이다. 그래서 close메서드의 예외는 숨겨지고 read의 예외정보를 볼 수 있는데 close메서드의 예외도 스택 추적 내역에 숨겨져있다는 꼬리표를 달고 출력된다.
+
+이렇게 try-with-resources는 코드가 보기 편할 뿐만아니라 예외의 정보도 훨씬 유용하다. 꼭 회수해야하는 자원을 다룰땐 try-with-resources를 사용하자.
 
 
 
