@@ -397,9 +397,75 @@ Pattern인스턴스를 내부에서 한 번 생성하고 isRomanNumberalFast가 호출될때마다 재�
 
 ---
 
-item # 7 : 다 쓴 객체 참조를 해체하라
+item # 7 : 다 쓴 객체 참조를 해제하라
 ---
 
+C에서는 동적할당을 통해서 메모리를 늘렸다 줄였다 혹은 해제(free)가 가능하다. 객체지향 수업시간에 배우는 C++도 소멸자가 있어서 해제(delete)가 가능하다.
+
+자바는 GC가 사용하지않는 메모리는 해체해주기때문에 어떻게 보면 편하지만 편한 만큼 메모리관리에 소홀해질 수 있다.
+
+확실히 C와 C++을 작성할땐 메모리 활성상태와 비활성상태를 자연스레 고려하게되지만, Java는 GC에 기대게된다.
+
+```java
+    public class Stack {
+    private Object[] elements;
+    private int size = 0;
+    private static final int DEFAULT_INITIAL_CAPACITY = 16;
+
+    public Stack() {
+        elements = new Object[DEFAULT_INITIAL_CAPACITY];
+    }
+
+    public void push(Object e) {
+        ensureCapacity();
+        elements[size++] = e;
+    }
+
+    public Object pop() {
+        if (size == 0)
+            throw new EmptyStackException();
+        return elements[--size];
+    }
+
+    /**
+     * 원소를 위한 공간을 적어도 하나 이상 확보한다.
+     * 배열 크기를 늘려야 할 때마다 대략 두 배씩 늘린다.
+     */
+    private void ensureCapacity() {
+        if (elements.length == size)
+            elements = Arrays.copyOf(elements, 2 * size + 1);
+    }
+```
+
+처음엔 도대체 메모리의 누수가 어디에서 일어나는지 확인하지 못했다.
+
+스택이란 자료구조는 pop과 push를 size라는 변수를 통해 **논리저**으로 구현된다는 점이다.
+
+pop과 push를 하더라도 논리적으로만 스택의 영역이 줄어들고 늘어나는거지 실제론 논리적인 스택영역 밖에는 객체가 존재하게된다.
+
+문제점은 여기서 발생하는데 GC는 스택 활성영역 밖에있는 객체를 회수 할 수가 없다. GC는 활성영역밖에 있는 객체도 참조되고있다고 알기때문이다.
+
+그래서 pop을 아래와 같이 구현해줘야한다.
+
+```java
+     public Object pop() {
+       if (size == 0)
+           throw new EmptyStackException();
+       Object result = elements[--size];
+       elements[size] = null; // 다 쓴 참조 해제
+       return result;
+   }
+```
+pop을 수행한 인덱스의 객체는 null로 해제해준다. 
+
+null처리를 해주게되면 GC는 메모리회수대상으로 인식하게되므로 메모리의 누수가 발생하지않는다.
+
+**질문 p.38 캐시 역시 메모리 누수를 일으키는 주범이다**
+
+---
+
+item # 8 : finalizer와 cleaner 사용을 피하라
+---
 
 
 
