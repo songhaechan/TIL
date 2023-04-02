@@ -1,177 +1,177 @@
 BlackJack CodeReview
 ==
 
-1. If¹®À» ¾²µÇ else¸¦ ¾ø¾ÖÀÚ.
+1. Ifë¬¸ì„ ì“°ë˜ elseë¥¼ ì—†ì• ìž.
 
-2. mainÇÔ¼ö´Â ÃÖ´ëÇÑ °£¼ÒÈ­ÇÏÀÚ. (spring controller¸¦ º¸¸é ÃÖ¼ÒÇÑÀÇ ¸Þ¼­µå¸¸ ¾´ °É º¼ ¼ö ÀÖ´Ù...)
+2. mainí•¨ìˆ˜ëŠ” ìµœëŒ€í•œ ê°„ì†Œí™”í•˜ìž. (spring controllerë¥¼ ë³´ë©´ ìµœì†Œí•œì˜ ë©”ì„œë“œë§Œ ì“´ ê±¸ ë³¼ ìˆ˜ ìžˆë‹¤...)
 
-3. °´Ã¼ÀÇ Ã¥ÀÓÀ» ºÐ¸íÈ÷ÇÏÀÚ.
+3. ê°ì²´ì˜ ì±…ìž„ì„ ë¶„ëª…ížˆí•˜ìž.
 
-4. Å¬·¡½º³×ÀÌ¹ÖÀ» ½Å°æ¾²ÀÚ. 
+4. í´ëž˜ìŠ¤ë„¤ì´ë°ì„ ì‹ ê²½ì“°ìž. 
 
-¸Þ¼­µå³ª ÇÊµåÀÇ ÀÌ¸§Àº Ç×»ó ½Å°æ½á¾ßÇÑ´Ù. Á÷°üÀûÀ¸·Î ÀÐÇô¾ßÇÏ¸ç ÇØ´ç ³×ÀÌ¹ÖÀÌ Á¤È®È÷ ¾î¶²ÀÏÀ» ÇÏ´ÂÁö Ç¥ÇöÇØ¾ßÇÑ´Ù.
+ë©”ì„œë“œë‚˜ í•„ë“œì˜ ì´ë¦„ì€ í•­ìƒ ì‹ ê²½ì¨ì•¼í•œë‹¤. ì§ê´€ì ìœ¼ë¡œ ì½í˜€ì•¼í•˜ë©° í•´ë‹¹ ë„¤ì´ë°ì´ ì •í™•ížˆ ì–´ë–¤ì¼ì„ í•˜ëŠ”ì§€ í‘œí˜„í•´ì•¼í•œë‹¤.
 
-5. Ä¸½¶È­¸¦ Àû¿ëÇÏÀÚ. Getter Setter¸¦ ÀÌ¿ëÇØ Á¢±ÙÇÏ°í ¼öÁ¤ÇÏÀÚ.
+5. ìº¡ìŠí™”ë¥¼ ì ìš©í•˜ìž. Getter Setterë¥¼ ì´ìš©í•´ ì ‘ê·¼í•˜ê³  ìˆ˜ì •í•˜ìž.
 
-Ä¸½¶È­¸¦ ¿Ö »ç¿ëÇØ¾ßÇÒ±î? 
+ìº¡ìŠí™”ë¥¼ ì™œ ì‚¬ìš©í•´ì•¼í• ê¹Œ? 
 
-private(protected)·Î ¼±¾ðÇÏ°ÔµÇ¸é ´Ù¸¥ Å¬·¡½ºÀÇ Á¢±ÙÀ» Çã¶ôÇÏÁö¾Ê°í ÇØ´ç Å¬·¡½ºÀÇ ¸â¹ö¸¦ ¿ÜºÎ¿¡¼­ ½±°Ô ¹Ù²Ü ¼ö°¡ ¾ø´Ù.
+private(protected)ë¡œ ì„ ì–¸í•˜ê²Œë˜ë©´ ë‹¤ë¥¸ í´ëž˜ìŠ¤ì˜ ì ‘ê·¼ì„ í—ˆë½í•˜ì§€ì•Šê³  í•´ë‹¹ í´ëž˜ìŠ¤ì˜ ë©¤ë²„ë¥¼ ì™¸ë¶€ì—ì„œ ì‰½ê²Œ ë°”ê¿€ ìˆ˜ê°€ ì—†ë‹¤.
 
-ÀÌ¸¦ Á¤º¸¸¦ Àº´ÐÇÑ´Ù°í ¸»ÇÏ¸ç, Á¤º¸ÀÇ Àº´ÐÀ¸·Î ÇâÈÄ À¯Áöº¸¼ö³ª È®Àå½Ã¿¡ ¿À·ù¸¦ ÁÙÀÏ ¼ö ÀÖ´Ù.
+ì´ë¥¼ ì •ë³´ë¥¼ ì€ë‹‰í•œë‹¤ê³  ë§í•˜ë©°, ì •ë³´ì˜ ì€ë‹‰ìœ¼ë¡œ í–¥í›„ ìœ ì§€ë³´ìˆ˜ë‚˜ í™•ìž¥ì‹œì— ì˜¤ë¥˜ë¥¼ ì¤„ì¼ ìˆ˜ ìžˆë‹¤.
 
-6. ListÅ¸ÀÔ°ú ArrayListÅ¸ÀÔÀÇ Â÷ÀÌÁ¡
+6. Listíƒ€ìž…ê³¼ ArrayListíƒ€ìž…ì˜ ì°¨ì´ì 
 ```java
  List<Card> cardDeck = new ArrayList<>();
  ArrayList<Card> cardDeck = new ArrayList<>();
 ```
 
-´äÀº **´ÙÇü¼º**ÀÌ´Ù. 
-List´Â ÀÎÅÍÆäÀÌ½º ArrayList´Â Å¬·¡½º´Ù.
+ë‹µì€ **ë‹¤í˜•ì„±**ì´ë‹¤. 
+ListëŠ” ì¸í„°íŽ˜ì´ìŠ¤ ArrayListëŠ” í´ëž˜ìŠ¤ë‹¤.
 
-List<> = new ArrayList·Î ¼±¾ðÇÏ°ÔµÇ¸é ³ªÁß¿¡ ArrayList°¡ ¾Æ´Ñ ListÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÑ ´Ù¸¥ Å¬·¡½º¸¦ ¼±¾ðÇØÁÙ ¼ö ÀÖ±â¶§¹®¿¡ º¸´Ù **À¯¿¬ÇÑ**ÇÁ·Î±×·¡¹ÖÀÌ °¡´ÉÇØÁø´Ù.
+List<> = new ArrayListë¡œ ì„ ì–¸í•˜ê²Œë˜ë©´ ë‚˜ì¤‘ì— ArrayListê°€ ì•„ë‹Œ Listì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•œ ë‹¤ë¥¸ í´ëž˜ìŠ¤ë¥¼ ì„ ì–¸í•´ì¤„ ìˆ˜ ìžˆê¸°ë•Œë¬¸ì— ë³´ë‹¤ **ìœ ì—°í•œ**í”„ë¡œê·¸ëž˜ë°ì´ ê°€ëŠ¥í•´ì§„ë‹¤.
 
 
-7. git flow¸¦ °øºÎÇÏÀÚ. (master, develop, feature)
+7. git flowë¥¼ ê³µë¶€í•˜ìž. (master, develop, feature)
 
-    #GitÆú´õ¿¡ µû·Î Á¤¸®
+    #Gití´ë”ì— ë”°ë¡œ ì •ë¦¬
 
-8. ¶óÀÌºê·¯¸®¿Í ÇÁ·¹ÀÓ¿öÅ©ÀÇ Â÷ÀÌÁ¡
+8. ë¼ì´ë¸ŒëŸ¬ë¦¬ì™€ í”„ë ˆìž„ì›Œí¬ì˜ ì°¨ì´ì 
 
-ÀÍ¼÷ÇÑ ´Ü¾îµéÀÌ´Ù. ³»°¡ ÀÌÁ¦ ¸· ÇÐ½ÀÀ» ½ÃÀÛÇÑ SpringÀº ÇÁ·¹ÀÓ¿öÅ©ÀÌ°í, C¾ð¾î¸¦ °øºÎÇÏ¸ç ¹«½ÉÄÚ »ç¿ëÇß´ø <stdio.h>¿¡ ÀÖ´Â printf, fopen, puts µîÀº C¿¡¼­ Á¦°øÇÏ´Â ±âº» ¶óÀÌºê·¯¸®´Ù.
+ìµìˆ™í•œ ë‹¨ì–´ë“¤ì´ë‹¤. ë‚´ê°€ ì´ì œ ë§‰ í•™ìŠµì„ ì‹œìž‘í•œ Springì€ í”„ë ˆìž„ì›Œí¬ì´ê³ , Cì–¸ì–´ë¥¼ ê³µë¶€í•˜ë©° ë¬´ì‹¬ì½” ì‚¬ìš©í–ˆë˜ <stdio.h>ì— ìžˆëŠ” printf, fopen, puts ë“±ì€ Cì—ì„œ ì œê³µí•˜ëŠ” ê¸°ë³¸ ë¼ì´ë¸ŒëŸ¬ë¦¬ë‹¤.
 
-ÀÌµéÀÇ Â÷ÀÌÁ¡Àº ÇÁ·Î±×·¡¹Ö Á¦¾î Èå¸§¿¡ ÀÖ´Ù.
+ì´ë“¤ì˜ ì°¨ì´ì ì€ í”„ë¡œê·¸ëž˜ë° ì œì–´ íë¦„ì— ìžˆë‹¤.
 
-C Çì´õÆÄÀÏ¿¡¼­ ºÒ·¯¿Í »ç¿ëÇÏ´ø ÇÔ¼öµé¿¡´ëÇÑ Á¦¾î±ÇÀº ³ª¿¡°ÔÀÖ´Ù. ¸ðµç Èå¸§Àº ÀÛ¼ºÀÚ°¡ ¼³°èÇÏÁö¸¸, Spring ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ Á¦¾î Èå¸§Àº ÇÁ·¹ÀÓ¿öÅ©¿¡ÀÖ´Ù.
+C í—¤ë”íŒŒì¼ì—ì„œ ë¶ˆëŸ¬ì™€ ì‚¬ìš©í•˜ë˜ í•¨ìˆ˜ë“¤ì—ëŒ€í•œ ì œì–´ê¶Œì€ ë‚˜ì—ê²Œìžˆë‹¤. ëª¨ë“  íë¦„ì€ ìž‘ì„±ìžê°€ ì„¤ê³„í•˜ì§€ë§Œ, Spring í”„ë ˆìž„ì›Œí¬ì—ì„œ ì œì–´ íë¦„ì€ í”„ë ˆìž„ì›Œí¬ì—ìžˆë‹¤.
 
-±×·¡¼­ ÀÌ¸¦ Á¦¾îÀÇ ¿ªÀü(IoC)ÀÌ¶ó ÇÑ´Ù.
+ê·¸ëž˜ì„œ ì´ë¥¼ ì œì–´ì˜ ì—­ì „(IoC)ì´ë¼ í•œë‹¤.
 
-¸» ±×´ë·Î ÇÁ·Î±×·¡¹Ö Á¦¾îÀÇ Ã¥ÀÓÀÌ °³¹ßÀÚ¿¡°Ô¼­ ÇÁ·¹ÀÓ¿öÅ©·Î ³Ñ¾î°¡°ÔµÇ°í, ±×¸¸Å­ °³¹ßÀÚ´Â ÇÙ½É ºñÁö´Ï½º·ÎÁ÷¿¡ ¸ôµÎÇÒ ¼ö ÀÖ°ÔµÈ´Ù.
+ë§ ê·¸ëŒ€ë¡œ í”„ë¡œê·¸ëž˜ë° ì œì–´ì˜ ì±…ìž„ì´ ê°œë°œìžì—ê²Œì„œ í”„ë ˆìž„ì›Œí¬ë¡œ ë„˜ì–´ê°€ê²Œë˜ê³ , ê·¸ë§Œí¼ ê°œë°œìžëŠ” í•µì‹¬ ë¹„ì§€ë‹ˆìŠ¤ë¡œì§ì— ëª°ë‘í•  ìˆ˜ ìžˆê²Œëœë‹¤.
 
-IoC¿Í ÇÔ²² ³ª¿À´Â °³³äÁß DI(ÀÇÁ¸°ü°èÁÖÀÔ)ÀÌ ÀÖ´Âµ¥, ÇÔ²² ÀÌÇØÇÏ¸é ÇÁ·¹ÀÓ¿öÅ©¿¡´ëÇÑ ÀÌÇØ°¡ ½¬¿öÁú°Í °°´Ù.
+IoCì™€ í•¨ê»˜ ë‚˜ì˜¤ëŠ” ê°œë…ì¤‘ DI(ì˜ì¡´ê´€ê³„ì£¼ìž…)ì´ ìžˆëŠ”ë°, í•¨ê»˜ ì´í•´í•˜ë©´ í”„ë ˆìž„ì›Œí¬ì—ëŒ€í•œ ì´í•´ê°€ ì‰¬ì›Œì§ˆê²ƒ ê°™ë‹¤.
 
-@Controller ³ª @Service ¾Ö³ÊÅ×ÀÌ¼ÇÀ» ºÙ¿©ÁÖ¸é ½ºÇÁ¸µÀÌ ¿Ã¶ó¿Ã¶§ ÄÄÆ÷³ÍÆ® ½ºÄµÀ» ÅëÇØ ½ºÇÁ¸µÀº ºóÀ¸·Î °´Ã¼¸¦ µî·ÏÇÏ°ÔµÇ°í, @Autowired¸¦ ÀÌ¿ëÇØ »ý¼ºÀÚ¿¡ ÀÎ½ºÅÏ½º¸¦ ½ºÇÁ¸µ¿¡°Ô ÁÖÀÔ¹ÞÀ» ¼ö ÀÖ´Ù. ÀÌ¸¦ DI¶ó ÇÑ´Ù.
+@Controller ë‚˜ @Service ì• ë„ˆí…Œì´ì…˜ì„ ë¶™ì—¬ì£¼ë©´ ìŠ¤í”„ë§ì´ ì˜¬ë¼ì˜¬ë•Œ ì»´í¬ë„ŒíŠ¸ ìŠ¤ìº”ì„ í†µí•´ ìŠ¤í”„ë§ì€ ë¹ˆìœ¼ë¡œ ê°ì²´ë¥¼ ë“±ë¡í•˜ê²Œë˜ê³ , @Autowiredë¥¼ ì´ìš©í•´ ìƒì„±ìžì— ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìŠ¤í”„ë§ì—ê²Œ ì£¼ìž…ë°›ì„ ìˆ˜ ìžˆë‹¤. ì´ë¥¼ DIë¼ í•œë‹¤.
 
-º¸ÅëÀº °´Ã¼¸¦ °³¹ßÀÚ°¡ Á÷Á¢ »ý¼ºÇÏ°í ÂüÁ¶º¯¼ö¿¡ ¿¬°á½ÃÄÑÁÖ´Â ÀÛ¾÷ÀÌ ÀÖ¾î¾ßÁö¸¸ ÇØ´ç ÀÎ½ºÅÏ½º¸¦ »ç¿ëÇÒ ¼ö ÀÖÁö¸¸, ¾Ö³ÊÅ×ÀÌ¼ÇÀ» ºÙ¿©ÁÜÀ¸·Î ½ºÇÁ¸µ¿¡°Ô °´Ã¼»ý¸íÁÖ±â¿¡´ëÇÑ ±ÇÇÑÀ» ³Ñ°ÜÁÖ°ÔµÈ´Ù.
+ë³´í†µì€ ê°ì²´ë¥¼ ê°œë°œìžê°€ ì§ì ‘ ìƒì„±í•˜ê³  ì°¸ì¡°ë³€ìˆ˜ì— ì—°ê²°ì‹œì¼œì£¼ëŠ” ìž‘ì—…ì´ ìžˆì–´ì•¼ì§€ë§Œ í•´ë‹¹ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆì§€ë§Œ, ì• ë„ˆí…Œì´ì…˜ì„ ë¶™ì—¬ì¤Œìœ¼ë¡œ ìŠ¤í”„ë§ì—ê²Œ ê°ì²´ìƒëª…ì£¼ê¸°ì—ëŒ€í•œ ê¶Œí•œì„ ë„˜ê²¨ì£¼ê²Œëœë‹¤.
 
-ÀÌÃ³·³ Á¦¾îÀÇ ¿ªÀüÀº Á¦¾îÀÇ Èå¸§ÀÌ °³¹ßÀÚ¿¡°Ô¼­ ¿ÜºÎÈ¯°æÀ¸·Î ³Ñ¾î°¡´Â°ÍÀ» ¶æÇÑ´Ù.
+ì´ì²˜ëŸ¼ ì œì–´ì˜ ì—­ì „ì€ ì œì–´ì˜ íë¦„ì´ ê°œë°œìžì—ê²Œì„œ ì™¸ë¶€í™˜ê²½ìœ¼ë¡œ ë„˜ì–´ê°€ëŠ”ê²ƒì„ ëœ»í•œë‹¤.
 
 ---
 
 1. Scanner vs BufferedReader
 
-    º¸Åë buffer´Â StringBuffer ¿¡¼­ µé¾îº¸¾ÒÁö¸¸ BufferedReader¿¡´ëÇØ¼± Ã³À½ µé¾îº¸¾Ò´Ù. Scanner¿Í À¯»çÇÑ ±â´ÉÀ» °¡Áø BufferedReader¿¡ ´ëÇØ ¾Ë¾Æº¸ÀÚ.
+    ë³´í†µ bufferëŠ” StringBuffer ì—ì„œ ë“¤ì–´ë³´ì•˜ì§€ë§Œ BufferedReaderì—ëŒ€í•´ì„  ì²˜ìŒ ë“¤ì–´ë³´ì•˜ë‹¤. Scannerì™€ ìœ ì‚¬í•œ ê¸°ëŠ¥ì„ ê°€ì§„ BufferedReaderì— ëŒ€í•´ ì•Œì•„ë³´ìž.
 
-    C¾ð¾î¿¡¼­ scanf¸¦ »ç¿ëÇÒ ¶§ ¹öÆÛÀÇ ±â´É¿¡´ëÇØ ¾Ë¾Æº»ÀûÀÌ ÀÖ´Ù. ¹öÆÛ¶õ Å°º¸µåÀÇ ÀÔ·ÂÀ» ¹öÆÛ¶ó´Â ÀÓ½ÃÀúÀå¼Ò¿¡ ¸ð¾Æ³õ¾Ò´Ù°¡ ¹öÆÛ°¡ °¡µæÂ÷°Å³ª °³Çà¹®ÀÚ¸¦ ¸¸³ª¸é ÇÁ·Î±×·¥¿¡ ÇÑ²¨¹ø¿¡ Àü´ÞÇÏ´Â ¹æ½ÄÀÌ´Ù.
+    Cì–¸ì–´ì—ì„œ scanfë¥¼ ì‚¬ìš©í•  ë•Œ ë²„í¼ì˜ ê¸°ëŠ¥ì—ëŒ€í•´ ì•Œì•„ë³¸ì ì´ ìžˆë‹¤. ë²„í¼ëž€ í‚¤ë³´ë“œì˜ ìž…ë ¥ì„ ë²„í¼ë¼ëŠ” ìž„ì‹œì €ìž¥ì†Œì— ëª¨ì•„ë†“ì•˜ë‹¤ê°€ ë²„í¼ê°€ ê°€ë“ì°¨ê±°ë‚˜ ê°œí–‰ë¬¸ìžë¥¼ ë§Œë‚˜ë©´ í”„ë¡œê·¸ëž¨ì— í•œêº¼ë²ˆì— ì „ë‹¬í•˜ëŠ” ë°©ì‹ì´ë‹¤.
 
-    Java¿¡¼­ Scanner´Â 1KBÀÇ ¹öÆÛ¸¦ °®°í BufferedReader´Â 8KBÀÇ ¹öÆÛ¸¦ °®´Â´Ù. ´ç¿¬ÇÏ°ÚÁö¸¸ 8K¸¦ ÇÑ²¨¹ø¿¡ ¸ð¾Æ¼­ Àü¼ÛÇÏ´Â ¹æ½Ä°ú 1K¸¦ ¸ð¾Æ¼­ Àü¼ÛÇÏ´Â ¹æ½Ä¿¡´Â **¼º´ÉÀÇ Â÷ÀÌ** °¡ ÀÖÀ» ¼ö ¹Û¿¡ ¾ø´Ù. 
+    Javaì—ì„œ ScannerëŠ” 1KBì˜ ë²„í¼ë¥¼ ê°–ê³  BufferedReaderëŠ” 8KBì˜ ë²„í¼ë¥¼ ê°–ëŠ”ë‹¤. ë‹¹ì—°í•˜ê² ì§€ë§Œ 8Kë¥¼ í•œêº¼ë²ˆì— ëª¨ì•„ì„œ ì „ì†¡í•˜ëŠ” ë°©ì‹ê³¼ 1Kë¥¼ ëª¨ì•„ì„œ ì „ì†¡í•˜ëŠ” ë°©ì‹ì—ëŠ” **ì„±ëŠ¥ì˜ ì°¨ì´** ê°€ ìžˆì„ ìˆ˜ ë°–ì— ì—†ë‹¤. 
 
-    Ãß°¡ÀûÀ¸·Î Scanner´Â ³»ºÎ¿¡¼­ Á¤±ÔÇ¥Çö½ÄÀû¿ë, ÆÄ½Ì°úÁ¤ µî ¿©·¯ °úÁ¤À» °ÅÄ¡±â¶§¹®¿¡ ¼º´ÉÀÌ ´õ ´À¸®´Ù.
+    ì¶”ê°€ì ìœ¼ë¡œ ScannerëŠ” ë‚´ë¶€ì—ì„œ ì •ê·œí‘œí˜„ì‹ì ìš©, íŒŒì‹±ê³¼ì • ë“± ì—¬ëŸ¬ ê³¼ì •ì„ ê±°ì¹˜ê¸°ë•Œë¬¸ì— ì„±ëŠ¥ì´ ë” ëŠë¦¬ë‹¤.
 
-    ÀÚ·á¿¡µû¸£¸é Scanner¿Í BufferedReaderÀÇ Â÷ÀÌ´Â ²Ï³ª Å©´Ù.
-    Scanner°¡ 4.8ÃÊ°¡ °É¸®´Â ÀÏÀ» BufferedReader´Â 0.6ÃÊ°É¸°´Ù.
+    ìžë£Œì—ë”°ë¥´ë©´ Scannerì™€ BufferedReaderì˜ ì°¨ì´ëŠ” ê½¤ë‚˜ í¬ë‹¤.
+    Scannerê°€ 4.8ì´ˆê°€ ê±¸ë¦¬ëŠ” ì¼ì„ BufferedReaderëŠ” 0.6ì´ˆê±¸ë¦°ë‹¤.
 
-    Scanner¿Í ´Þ¸® BufferedReader´Â ÀÔ·ÂµÈ µ¥ÀÌÅÍÇü½ÄÀÌ StringÀ¸·Î °íÁ¤ÀÌ¹Ç·Î µ¥ÀÌÅÍ¸¦ µû·Î °¡°øÇØÁÖ¾î¾ßÇÑ´Ù. Ãß°¡·Î ¿¹¿ÜÃ³¸®°¡ ÇÊ¼öÀûÀÌ´Ù.
+    Scannerì™€ ë‹¬ë¦¬ BufferedReaderëŠ” ìž…ë ¥ëœ ë°ì´í„°í˜•ì‹ì´ Stringìœ¼ë¡œ ê³ ì •ì´ë¯€ë¡œ ë°ì´í„°ë¥¼ ë”°ë¡œ ê°€ê³µí•´ì£¼ì–´ì•¼í•œë‹¤. ì¶”ê°€ë¡œ ì˜ˆì™¸ì²˜ë¦¬ê°€ í•„ìˆ˜ì ì´ë‹¤.
 
-    PSÇÒ ¶§ scanner¸¦ »ç¿ëÇÏ¸é ¹®Á¦¸¦ Á¦ÇÑ½Ã°£ ³»¿¡ ¸ø Ç¬´Ù°íÇÑ´Ù. ÇöÀç BlackJack ÇÁ·ÎÁ§Æ®¿¡¼­´Â Á¤¼öÇÏ³ª¸¦ ÀÔ·Â¹Þ±â¶§¹®¿¡ Å« Â÷ÀÌ´Â ¾ø°ÚÁö¸¸ ÀÔ·Âµ¥ÀÌÅÍ°¡ ´Ã¾î³¯ °æ¿ì¿¡´Â BufferedReader¸¦ °í·ÁÇÏÀÚ.
+    PSí•  ë•Œ scannerë¥¼ ì‚¬ìš©í•˜ë©´ ë¬¸ì œë¥¼ ì œí•œì‹œê°„ ë‚´ì— ëª» í‘¼ë‹¤ê³ í•œë‹¤. í˜„ìž¬ BlackJack í”„ë¡œì íŠ¸ì—ì„œëŠ” ì •ìˆ˜í•˜ë‚˜ë¥¼ ìž…ë ¥ë°›ê¸°ë•Œë¬¸ì— í° ì°¨ì´ëŠ” ì—†ê² ì§€ë§Œ ìž…ë ¥ë°ì´í„°ê°€ ëŠ˜ì–´ë‚  ê²½ìš°ì—ëŠ” BufferedReaderë¥¼ ê³ ë ¤í•˜ìž.
 
-2. Á¢±ÙÁ¦¾îÀÚ
+2. ì ‘ê·¼ì œì–´ìž
 
-    Á¢±ÙÁ¦¾îÀÚÀÇ Á¾·ù
+    ì ‘ê·¼ì œì–´ìžì˜ ì¢…ë¥˜
         
         private protected default public
 
     1. 
-        privateÀº ¹üÀ§°¡ °¡Àå Á¼Àº Á¢±ÙÁ¦¾îÀÚ·Î ÇØ´ç Å¬·¡½º³»¿¡¼­¸¸ »ç¿ëÇÒ ¼ö ÀÖ°í Å¬·¡½º ¹Û¿¡¼­´Â »ç¿ë ºÒ°¡´ÉÇÏ´Ù. ¸Þ¼­µå,Å¬·¡½º,ÇÊµå¿¡ ºÙÀ» ¼ö ÀÖ´Ù.
+        privateì€ ë²”ìœ„ê°€ ê°€ìž¥ ì¢ì€ ì ‘ê·¼ì œì–´ìžë¡œ í•´ë‹¹ í´ëž˜ìŠ¤ë‚´ì—ì„œë§Œ ì‚¬ìš©í•  ìˆ˜ ìžˆê³  í´ëž˜ìŠ¤ ë°–ì—ì„œëŠ” ì‚¬ìš© ë¶ˆê°€ëŠ¥í•˜ë‹¤. ë©”ì„œë“œ,í´ëž˜ìŠ¤,í•„ë“œì— ë¶™ì„ ìˆ˜ ìžˆë‹¤.
 
-        ÇÏÁö¸¸ ÃÖ»óÀ§ Å¬·¡½º¿¡´Â ºÙÀ» ¼ö ¾ø°í ³»ºÎÅ¬·¡½º¿¡ ºÙ¾î¼­ ¿ÜºÎ¿¡¼­ ³»ºÎÅ¬·¡½º¿¡ Á¢±ÙÇÒ ¼ö ¾ø°Ô ¸¸µç´Ù.
+        í•˜ì§€ë§Œ ìµœìƒìœ„ í´ëž˜ìŠ¤ì—ëŠ” ë¶™ì„ ìˆ˜ ì—†ê³  ë‚´ë¶€í´ëž˜ìŠ¤ì— ë¶™ì–´ì„œ ì™¸ë¶€ì—ì„œ ë‚´ë¶€í´ëž˜ìŠ¤ì— ì ‘ê·¼í•  ìˆ˜ ì—†ê²Œ ë§Œë“ ë‹¤.
 
     2. 
-        protected´Â µ¿ÀÏÇÑ ÆÐÅ°ÁöÀÇ Å¬·¡½º È¤Àº ÇØ´ç Å¬·¡½º¸¦ »ó¼Ó¹ÞÀº ´Ù¸¥ ÆÐÅ°ÁöÀÇ Å¬·¡½ºµéÀÌ Á¢±Ù°¡´ÉÇÏ´Ù.
+        protectedëŠ” ë™ì¼í•œ íŒ¨í‚¤ì§€ì˜ í´ëž˜ìŠ¤ í˜¹ì€ í•´ë‹¹ í´ëž˜ìŠ¤ë¥¼ ìƒì†ë°›ì€ ë‹¤ë¥¸ íŒ¨í‚¤ì§€ì˜ í´ëž˜ìŠ¤ë“¤ì´ ì ‘ê·¼ê°€ëŠ¥í•˜ë‹¤.
 
     3. 
-        default´Â ¾Æ¹«·± Á¢±ÙÁ¦¾îÀÚ¸¦ ¸í½ÃÇÏÁö ¾Ê¾ÒÀ»¶§ÀÇ »óÅÂÀÌ°í, µ¿ÀÏÇÑ ÆÐÅ°Áö³»¿¡¼­¸¸ Á¢±ÙÀÌ °¡´ÉÇÏ´Ù.
+        defaultëŠ” ì•„ë¬´ëŸ° ì ‘ê·¼ì œì–´ìžë¥¼ ëª…ì‹œí•˜ì§€ ì•Šì•˜ì„ë•Œì˜ ìƒíƒœì´ê³ , ë™ì¼í•œ íŒ¨í‚¤ì§€ë‚´ì—ì„œë§Œ ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤.
 
     4. 
-        publicÀº °¡Àå ³ÐÀº Á¢±ÙÁ¦¾îÀÚ·Î ¾îµð¼­µç Á¢±ÙÀÌ °¡´ÉÇÏ´Ù.
+        publicì€ ê°€ìž¥ ë„“ì€ ì ‘ê·¼ì œì–´ìžë¡œ ì–´ë””ì„œë“  ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤.
     
-3. JVM°ú ¸Þ¸ð¸®±¸Á¶
+3. JVMê³¼ ë©”ëª¨ë¦¬êµ¬ì¡°
 
-    ¸àÅä´Ô²²¼­ staticÇÊµå¿Í ÀÏ¹ÝÇÊµåÀÇ Â÷ÀÌÁ¡À» °í¹ÎÇØº¸¶ó°í ÇÏ¼Ì´Ù. ¾î´À°÷¿¡ ÀúÀåµÇ´ÂÁö¸¦ ¾Ë±âÀ§ÇØ javaÀÇ ¸Þ¸ð¸®±¸Á¶¿¡´ëÇØ ¾Ë¾Æº¸´ÂÁß¿¡ ¸Þ¸ð¸®±¸Á¶¸¦ ¾Ë±âÀ§ÇØ **JVM(Java Virtual Merchine)** ¿¡´ëÇØ ¸ÕÀú ¾Ë¾Æº¸¾Ò´Ù.
+    ë©˜í† ë‹˜ê»˜ì„œ staticí•„ë“œì™€ ì¼ë°˜í•„ë“œì˜ ì°¨ì´ì ì„ ê³ ë¯¼í•´ë³´ë¼ê³  í•˜ì…¨ë‹¤. ì–´ëŠê³³ì— ì €ìž¥ë˜ëŠ”ì§€ë¥¼ ì•Œê¸°ìœ„í•´ javaì˜ ë©”ëª¨ë¦¬êµ¬ì¡°ì—ëŒ€í•´ ì•Œì•„ë³´ëŠ”ì¤‘ì— ë©”ëª¨ë¦¬êµ¬ì¡°ë¥¼ ì•Œê¸°ìœ„í•´ **JVM(Java Virtual Merchine)** ì—ëŒ€í•´ ë¨¼ì € ì•Œì•„ë³´ì•˜ë‹¤.
 
-    ÀÚ¹ÙÀÇ Á¤¼® Ã¹ ÆäÀÌÁö¿¡ JavaÀÇ ½½·Î°ÇÀÌ ÀûÇôÀÖ´Ù.
+    ìžë°”ì˜ ì •ì„ ì²« íŽ˜ì´ì§€ì— Javaì˜ ìŠ¬ë¡œê±´ì´ ì í˜€ìžˆë‹¤.
 
         Write Once, Run Anywhere
 
-    ÇÑ ¹ø ÇÁ·Î±×·¡¹ÖÇÑ °ÍÀº ¾î´À ÇÃ·§Æû¿¡¼­µµ ½ÇÇàµÈ´Ù.(¸ÚÀÖ´Â ¸»ÀÌ´Ù.)
+    í•œ ë²ˆ í”„ë¡œê·¸ëž˜ë°í•œ ê²ƒì€ ì–´ëŠ í”Œëž«í¼ì—ì„œë„ ì‹¤í–‰ëœë‹¤.(ë©‹ìžˆëŠ” ë§ì´ë‹¤.)
 
-    Java´Â OS¿¡ Á¾¼ÓÀûÀÌÁö ¾Ê´Ù. ´õ Á¤È®È÷´Â JVMÀÌ ÀÖ´Â OS¿¡¼­´Â Á¾¼ÓÀûÀÌÁö¾Ê´Ù.
+    JavaëŠ” OSì— ì¢…ì†ì ì´ì§€ ì•Šë‹¤. ë” ì •í™•ížˆëŠ” JVMì´ ìžˆëŠ” OSì—ì„œëŠ” ì¢…ì†ì ì´ì§€ì•Šë‹¤.
 
-    ¿ì¸®°¡ ÈçÈ÷ ÀÛ¼ºÇÏ´Â .javaÆÄÀÏÀº JVMÀÌ ÀÎ½ÄÇÒ ¼ö ÀÖ´Â .classÆÄÀÏ·Î ÄÄÆÄÀÏµÈ´Ù.
+    ìš°ë¦¬ê°€ í”ížˆ ìž‘ì„±í•˜ëŠ” .javaíŒŒì¼ì€ JVMì´ ì¸ì‹í•  ìˆ˜ ìžˆëŠ” .classíŒŒì¼ë¡œ ì»´íŒŒì¼ëœë‹¤.
 
-    Áï JavaCompiler´Â .java¸¦ JavaByteCode·Î .classÆÄÀÏ·Î º¯È¯ÇØÁØ´Ù.
+    ì¦‰ JavaCompilerëŠ” .javaë¥¼ JavaByteCodeë¡œ .classíŒŒì¼ë¡œ ë³€í™˜í•´ì¤€ë‹¤.
 
-    .classÆÄÀÏÀº JVMÀ§¿¡ ¿Ã¶ó°¡ OS°¡ ÀÎ½ÄÇÒ ¼ö ÀÖ´Â ±â°è¾î·Î ´Ù½Ã º¯È¯ÇÏ¿© OS(cpu)°¡ ÀÎ½ÄÇÒ ¼ö ÀÖ°ÔµÈ´Ù. (JIT Compiler)
+    .classíŒŒì¼ì€ JVMìœ„ì— ì˜¬ë¼ê°€ OSê°€ ì¸ì‹í•  ìˆ˜ ìžˆëŠ” ê¸°ê³„ì–´ë¡œ ë‹¤ì‹œ ë³€í™˜í•˜ì—¬ OS(cpu)ê°€ ì¸ì‹í•  ìˆ˜ ìžˆê²Œëœë‹¤. (JIT Compiler)
 
     ![img](./jvm.png)
 
-    JVMÀÇ ³»ºÎ ±¸Á¶´Â À§ ±×¸²°ú °°´Ù.
+    JVMì˜ ë‚´ë¶€ êµ¬ì¡°ëŠ” ìœ„ ê·¸ë¦¼ê³¼ ê°™ë‹¤.
 
-    **Class Loader** ´Â .class ÆÄÀÏÀ» ·ÎµåÇÏ°í ¸µÅ©ÇÏ´Â ¿ªÇÒÀ» ÇÑ´Ù.
-    ·±Å¸ÀÓ½Ã¿¡ »õ·Î¿î Å¬·¡½º¸¦ µ¿ÀûÀ¸·Î ·ÎµåÇÏ°í ¸µÅ©ÇØÁØ´Ù.
+    **Class Loader** ëŠ” .class íŒŒì¼ì„ ë¡œë“œí•˜ê³  ë§í¬í•˜ëŠ” ì—­í• ì„ í•œë‹¤.
+    ëŸ°íƒ€ìž„ì‹œì— ìƒˆë¡œìš´ í´ëž˜ìŠ¤ë¥¼ ë™ì ìœ¼ë¡œ ë¡œë“œí•˜ê³  ë§í¬í•´ì¤€ë‹¤.
 
-    **Excution** Àº Å¬·¡½º¸¦ ½ÇÇà½ÃÅ²´Ù. ´Ù½Ã ¸»ÇØ .classÆÄÀÏÀ» Å¬·¡½º·Î´õ°¡ **Runtime Data Area**¿¡ ¿Ã·ÁÁÖ¸é À§¿¡ ¾ð±ÞÇÑ JITÄÄÆÄÀÏ·¯°¡ (JavaByteCode¸¦)±â°è¾î·Î ¹ø¿ªÇØÁØ´Ù. ¸¹ÀÌ µé¾îº¸¾Ò´ø GCµµ º¸ÀÎ´Ù. GC´Â »ç¿ëÇÏÁö¾Ê´Â ¸Þ¸ð¸®¸¦ ¼ö°ÅÇØÁØ´Ù.
+    **Excution** ì€ í´ëž˜ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤. ë‹¤ì‹œ ë§í•´ .classíŒŒì¼ì„ í´ëž˜ìŠ¤ë¡œë”ê°€ **Runtime Data Area**ì— ì˜¬ë ¤ì£¼ë©´ ìœ„ì— ì–¸ê¸‰í•œ JITì»´íŒŒì¼ëŸ¬ê°€ (JavaByteCodeë¥¼)ê¸°ê³„ì–´ë¡œ ë²ˆì—­í•´ì¤€ë‹¤. ë§Žì´ ë“¤ì–´ë³´ì•˜ë˜ GCë„ ë³´ì¸ë‹¤. GCëŠ” ì‚¬ìš©í•˜ì§€ì•ŠëŠ” ë©”ëª¨ë¦¬ë¥¼ ìˆ˜ê±°í•´ì¤€ë‹¤.
 
-    ÀÚ ÀÌÁ¦ µåµð¾î static°ú non-staticÀ» ¾Ë¾Æº¼ ¼ö ÀÖ°ÔµÆ´Ù.
+    ìž ì´ì œ ë“œë””ì–´ staticê³¼ non-staticì„ ì•Œì•„ë³¼ ìˆ˜ ìžˆê²Œëë‹¤.
 
     ![img](./rda.png)
 
-    ¾Õ¼­ ¼³¸íÇÑ Å¬·¡½º·Î´õ°¡ .classÆÄÀÏÀ» Å½»öÇÏ´ÂÁß¿¡ staticÅ°¿öµå¸¦ º¸´Â ¼ø°£ ¹Ù·Î MethodArea¿¡ ÇÒ´çÇÑ´Ù.
-    MethodArea´Â ³í¸®ÀûÀ¸·Î HeapAreaÀÌ´Ù.
+    ì•žì„œ ì„¤ëª…í•œ í´ëž˜ìŠ¤ë¡œë”ê°€ .classíŒŒì¼ì„ íƒìƒ‰í•˜ëŠ”ì¤‘ì— staticí‚¤ì›Œë“œë¥¼ ë³´ëŠ” ìˆœê°„ ë°”ë¡œ MethodAreaì— í• ë‹¹í•œë‹¤.
+    MethodAreaëŠ” ë…¼ë¦¬ì ìœ¼ë¡œ HeapAreaì´ë‹¤.
 
-    MethodsArea¿¡´Â Å¬·¡½º·Î´õ°¡ ÀûÀçÇÑ Å¬·¡½ºÀÇ ¸ðµç ¸ÞÅ¸Á¤º¸µéÀÌ ¿Ã¶ó°£´Ù. (ÀÌ ¶§ staticÇÊµåµµ °°ÀÌ)
+    MethodsAreaì—ëŠ” í´ëž˜ìŠ¤ë¡œë”ê°€ ì ìž¬í•œ í´ëž˜ìŠ¤ì˜ ëª¨ë“  ë©”íƒ€ì •ë³´ë“¤ì´ ì˜¬ë¼ê°„ë‹¤. (ì´ ë•Œ staticí•„ë“œë„ ê°™ì´)
 
-    ´Ù½Ã¸»ÇÏÀÚ¸é staticÇÊµå´Â Å¬·¡½º°¡ ·ÎµåµÇ´Â ½ÃÁ¡¿¡ °°ÀÌ ·Îµå°¡µÇ°í ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ±âÀü±îÁö Á×Áö¾Ê°í »ì¾ÆÀÖ´Ù.
+    ë‹¤ì‹œë§í•˜ìžë©´ staticí•„ë“œëŠ” í´ëž˜ìŠ¤ê°€ ë¡œë“œë˜ëŠ” ì‹œì ì— ê°™ì´ ë¡œë“œê°€ë˜ê³  í”„ë¡œê·¸ëž¨ì´ ì¢…ë£Œë˜ê¸°ì „ê¹Œì§€ ì£½ì§€ì•Šê³  ì‚´ì•„ìžˆë‹¤.
 
-    ±×·¸´Ùº¸´Ï... staticÀ» ³²¹ßÇÏ´Â°ÍÀº ¸Þ¸ð¸®°ü¸®¿¡ ÁÁÁö¾Ê´Ù. MethodArea´Â GCÀÇ ´ë»óÀÌ ¾Æ´Ï¹Ç·Î ¸Þ¸ð¸®°ü¸®°¡ µÇÁö¾Ê´Â´Ù.
+    ê·¸ë ‡ë‹¤ë³´ë‹ˆ... staticì„ ë‚¨ë°œí•˜ëŠ”ê²ƒì€ ë©”ëª¨ë¦¬ê´€ë¦¬ì— ì¢‹ì§€ì•Šë‹¤. MethodAreaëŠ” GCì˜ ëŒ€ìƒì´ ì•„ë‹ˆë¯€ë¡œ ë©”ëª¨ë¦¬ê´€ë¦¬ê°€ ë˜ì§€ì•ŠëŠ”ë‹¤.
 
-    HeapArea´Â ¸ðµç ÀÎ½ºÅÏ½º°¡ µ¿ÀûÀ¸·Î »ý¼ºµÇ°í, GCÀÇ °ü¸®´ë»óÀÌ´Ù. MethodsArea¿¡ ÀúÀåµÇ¾îÀÖ´Â Å¬·¡½º ¸ÞÅ¸µ¥ÀÌÅÍ¸¦ ÀÌ¿ëÇØ °´Ã¼¸¦ »ý¼ºÇÑ´Ù.
+    HeapAreaëŠ” ëª¨ë“  ì¸ìŠ¤í„´ìŠ¤ê°€ ë™ì ìœ¼ë¡œ ìƒì„±ë˜ê³ , GCì˜ ê´€ë¦¬ëŒ€ìƒì´ë‹¤. MethodsAreaì— ì €ìž¥ë˜ì–´ìžˆëŠ” í´ëž˜ìŠ¤ ë©”íƒ€ë°ì´í„°ë¥¼ ì´ìš©í•´ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
 
-    °á·ÐÀûÀ¸·Î non-static ÇÊµå´Â °´Ã¼°¡ »ý¼ºµÇ´Â ½ÃÁ¡¿¡ ÇÊµå°¡ »ý¼ºµÇ±â¶§¹®¿¡ (HeapArea¿¡¼­) static°ú »ý¼º°ú ¼Ò¸êÀÇ ±â°£Â÷ÀÌ(?)°¡ ÀÖ´Ù.
+    ê²°ë¡ ì ìœ¼ë¡œ non-static í•„ë“œëŠ” ê°ì²´ê°€ ìƒì„±ë˜ëŠ” ì‹œì ì— í•„ë“œê°€ ìƒì„±ë˜ê¸°ë•Œë¬¸ì— (HeapAreaì—ì„œ) staticê³¼ ìƒì„±ê³¼ ì†Œë©¸ì˜ ê¸°ê°„ì°¨ì´(?)ê°€ ìžˆë‹¤.
 
-    ¾ö¹ÐÈ÷¸»ÇÏÀÚ¸é staticÀº ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ±âÀü±îÁø ºÒ¸êÀÇ Á¸ÀçÀÌ°í, non-staticÀº ÀÛ¼ºÀÚ°¡ ÀÎ½ºÅÏ½º¸¦ »ç¿ëÇÏÁö¾ÊÀ¸¸é GC¿¡ ÀÇÇØ Á¦°ÅµÈ´Ù.
+    ì—„ë°€ížˆë§í•˜ìžë©´ staticì€ í”„ë¡œê·¸ëž¨ì´ ì¢…ë£Œë˜ê¸°ì „ê¹Œì§„ ë¶ˆë©¸ì˜ ì¡´ìž¬ì´ê³ , non-staticì€ ìž‘ì„±ìžê°€ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì§€ì•Šìœ¼ë©´ GCì— ì˜í•´ ì œê±°ëœë‹¤.
 
-    Ãß°¡·Î StackArea´Â ¸Þ¼­µå¸¦ È£ÃâÇÏ°í³ª¼­ ÇÒ´çµÇ´Â Áö¿ªº¯¼ö°¡ µé¾î¿À´Â °÷ÀÌ´Ù. ¸Þ¼­µå È£ÃâÀÌ ³¡³ª¸é ÀÚ¿¬½º·¹ »ç¶óÁø´Ù.
+    ì¶”ê°€ë¡œ StackAreaëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ê³ ë‚˜ì„œ í• ë‹¹ë˜ëŠ” ì§€ì—­ë³€ìˆ˜ê°€ ë“¤ì–´ì˜¤ëŠ” ê³³ì´ë‹¤. ë©”ì„œë“œ í˜¸ì¶œì´ ëë‚˜ë©´ ìžì—°ìŠ¤ë ˆ ì‚¬ë¼ì§„ë‹¤.
 
 ---
 
-1. JIT ÄÄÆÄÀÏ·¯
+1. JIT ì»´íŒŒì¼ëŸ¬
     ---
 
 
-    Àú¹øÁÖ TIL¿¡¼­ JVM¿¡´ëÇØ ¾Ë¾Æº¸¾Ò´Ù. .javaÆÄÀÏÀÌ ÀÚ¹Ù¹ÙÀÌÆ®ÄÚµå·Î º¯È¯µÇ¾î .classÆÄÀÏÀ» ¸¸µé°í .classÆÄÀÏÀº **JITÄÄÆÄÀÏ·¯**¿¡ÀÇÇØ ±â°è¾î·Î º¯È¯µÈ´Ù.
+    ì €ë²ˆì£¼ TILì—ì„œ JVMì—ëŒ€í•´ ì•Œì•„ë³´ì•˜ë‹¤. .javaíŒŒì¼ì´ ìžë°”ë°”ì´íŠ¸ì½”ë“œë¡œ ë³€í™˜ë˜ì–´ .classíŒŒì¼ì„ ë§Œë“¤ê³  .classíŒŒì¼ì€ **JITì»´íŒŒì¼ëŸ¬**ì—ì˜í•´ ê¸°ê³„ì–´ë¡œ ë³€í™˜ëœë‹¤.
 
-    JIT ÄÄÆÄÀÏ·¯¸¦ ¾Ë¾Æº¸±âÀü¿¡ Á¤Àû ÄÄÆÄÀÏ·¯¿Í µ¿Àû ÄÄÆÄÀÏ·¯¿¡´ëÇØ ¾Ë¾Æº¸ÀÚ.
+    JIT ì»´íŒŒì¼ëŸ¬ë¥¼ ì•Œì•„ë³´ê¸°ì „ì— ì •ì  ì»´íŒŒì¼ëŸ¬ì™€ ë™ì  ì»´íŒŒì¼ëŸ¬ì—ëŒ€í•´ ì•Œì•„ë³´ìž.
 
-    Á¤Àû ÄÄÆÄÀÏ·¯ÀÇ ´ëÇ¥ÀûÀÎ ¿¹½Ã´Â C¾ð¾îÀÌ´Ù.
+    ì •ì  ì»´íŒŒì¼ëŸ¬ì˜ ëŒ€í‘œì ì¸ ì˜ˆì‹œëŠ” Cì–¸ì–´ì´ë‹¤.
 
-    C¾ð¾î´Â ½ÇÇà½ÃÁ¡ ÀÌÀü¿¡ ÄÄÆÄÀÏÀ» ¸ðµÎ ¸¶Ä¡°í ·±Å¸ÀÓ¿¡´Â ÄÄÆÄÀÏÀ» ÇÏÁö¾Ê´Â´Ù. ½ÇÇàÀÌÀü¿¡ ¸ðµç ÄÄÆÄÀÏ°úÁ¤À» °ÅÄ¡±â¶§¹®¿¡ ÄÄÆÄÀÏ½Ã°£ÀÌ ´Ã¾î³­´Ù´Â ÀåÁ¡ÀÌ ÀÖÁö¸¸, ·±Å¸ÀÓ½Ã¿¡´Â ÄÄÆÄÀÏÇÏ´Â °úÁ¤ÀÌ ¾ø±â¶§¹®¿¡ ·±Å¸ÀÓ¼º´ÉÀº ¶Ù¾î³ª´Ù.
+    Cì–¸ì–´ëŠ” ì‹¤í–‰ì‹œì  ì´ì „ì— ì»´íŒŒì¼ì„ ëª¨ë‘ ë§ˆì¹˜ê³  ëŸ°íƒ€ìž„ì—ëŠ” ì»´íŒŒì¼ì„ í•˜ì§€ì•ŠëŠ”ë‹¤. ì‹¤í–‰ì´ì „ì— ëª¨ë“  ì»´íŒŒì¼ê³¼ì •ì„ ê±°ì¹˜ê¸°ë•Œë¬¸ì— ì»´íŒŒì¼ì‹œê°„ì´ ëŠ˜ì–´ë‚œë‹¤ëŠ” ìž¥ì ì´ ìžˆì§€ë§Œ, ëŸ°íƒ€ìž„ì‹œì—ëŠ” ì»´íŒŒì¼í•˜ëŠ” ê³¼ì •ì´ ì—†ê¸°ë•Œë¬¸ì— ëŸ°íƒ€ìž„ì„±ëŠ¥ì€ ë›°ì–´ë‚˜ë‹¤.
 
-    ÆÄÀÌ½ãÀº µ¿Àû ÄÄÆÄÀÏ·¯(ÀÎÅÍÇÁ¸®ÅÍ)¸¦ »ç¿ëÇÏ´Â ´ëÇ¥ÀûÀÎ ¾ð¾î´Ù. ½ÇÇàÀÌÀü¿¡ ÄÄÆÄÀÏÇÏÁö¾Ê±â¶§¹®¿¡ ÄÄÆÄÀÏ½Ã°£Àº ¸Å¿ì ÂªÁö¸¸ ½ÇÇà ÈÄ ÄÄÆÄÀÏÀ» ÇÏ±â¶§¹®¿¡ ·±Å¸ÀÓ¼º´ÉÀº ¶³¾îÁú ¼ö ¹Û¿¡ ¾ø´Ù.
+    íŒŒì´ì¬ì€ ë™ì  ì»´íŒŒì¼ëŸ¬(ì¸í„°í”„ë¦¬í„°)ë¥¼ ì‚¬ìš©í•˜ëŠ” ëŒ€í‘œì ì¸ ì–¸ì–´ë‹¤. ì‹¤í–‰ì´ì „ì— ì»´íŒŒì¼í•˜ì§€ì•Šê¸°ë•Œë¬¸ì— ì»´íŒŒì¼ì‹œê°„ì€ ë§¤ìš° ì§§ì§€ë§Œ ì‹¤í–‰ í›„ ì»´íŒŒì¼ì„ í•˜ê¸°ë•Œë¬¸ì— ëŸ°íƒ€ìž„ì„±ëŠ¥ì€ ë–¨ì–´ì§ˆ ìˆ˜ ë°–ì— ì—†ë‹¤.
 
-    JITÄÄÆÄÀÏ·¯´Â Á¤Àû ÄÄÆÄÀÏ·¯¿Í µ¿Àû ÄÄÆÄÀÏ·¯ÀÇ Æ¯¼ºÀ» ¸ðµÎ °¡Áö°í ÀÖ´Ù.
+    JITì»´íŒŒì¼ëŸ¬ëŠ” ì •ì  ì»´íŒŒì¼ëŸ¬ì™€ ë™ì  ì»´íŒŒì¼ëŸ¬ì˜ íŠ¹ì„±ì„ ëª¨ë‘ ê°€ì§€ê³  ìžˆë‹¤.
 
-    JVMÀº ÃÊ±â¿¡ ÀÎÅÍÇÁ¸®ÅÍ¹æ½Ä¸¸À» »ç¿ëÇß´Ù. Áï ·±Å¸ÀÓ½Ã¿¡ ¹ÙÀÌÆ®ÄÚµå¸¦ ÇÑÁÙÇÑÁÙ ÀÐ¾î¼­ ¹ÙÀÌ³Ê¸®ÄÚµå·Î º¯È¯Çß´Ù. ·±Å¸ÀÓ¼º´ÉÀÌ ¶³¾îÁöÀÚ µîÀåÇÑ ÄÄÆÄÀÏ·¯°¡ JITÄÄÆÄÀÏ·¯´Ù.
+    JVMì€ ì´ˆê¸°ì— ì¸í„°í”„ë¦¬í„°ë°©ì‹ë§Œì„ ì‚¬ìš©í–ˆë‹¤. ì¦‰ ëŸ°íƒ€ìž„ì‹œì— ë°”ì´íŠ¸ì½”ë“œë¥¼ í•œì¤„í•œì¤„ ì½ì–´ì„œ ë°”ì´ë„ˆë¦¬ì½”ë“œë¡œ ë³€í™˜í–ˆë‹¤. ëŸ°íƒ€ìž„ì„±ëŠ¥ì´ ë–¨ì–´ì§€ìž ë“±ìž¥í•œ ì»´íŒŒì¼ëŸ¬ê°€ JITì»´íŒŒì¼ëŸ¬ë‹¤.
 
-    JITÄÄÆÄÀÏ·¯´Â ¿ì¼± ¸ðµç ¹ÙÀÌÆ®ÄÚµå¸¦ ÄÄÆÄÀÏÇÑ ÈÄ¿¡ JVMÀÌ ÀÎÅÍÇÁ¸®ÅÍ¹æ½ÄÀ¸·Î ÄÚµå¸¦ º¯È¯ÇÏ¸é¼­ Áßº¹µÇ´Â ÄÚµåµéÀ» Ã¼Å©ÇÏ°í ÇØ´ç ÄÚµåµéÀº Ä³½ÌÇÏ¿© JITÄÄÆÄÀÏ·¯¿¡°Ô ½ÇÇàÀ» ¸Ã±ä´Ù. 
+    JITì»´íŒŒì¼ëŸ¬ëŠ” ìš°ì„  ëª¨ë“  ë°”ì´íŠ¸ì½”ë“œë¥¼ ì»´íŒŒì¼í•œ í›„ì— JVMì´ ì¸í„°í”„ë¦¬í„°ë°©ì‹ìœ¼ë¡œ ì½”ë“œë¥¼ ë³€í™˜í•˜ë©´ì„œ ì¤‘ë³µë˜ëŠ” ì½”ë“œë“¤ì„ ì²´í¬í•˜ê³  í•´ë‹¹ ì½”ë“œë“¤ì€ ìºì‹±í•˜ì—¬ JITì»´íŒŒì¼ëŸ¬ì—ê²Œ ì‹¤í–‰ì„ ë§¡ê¸´ë‹¤. 
 
-    ÀÌ·¸°Ô JVMÀº ÀÎÅÍÇÁ¸®ÅÍ¹æ½Ä°ú Áßº¹µÇ´Â ÄÚµåµéÀ» Ä³½ÌÇÏ¿© ½ÇÇàÇÏ´Â ¹æ½ÄÀ» Ã¤ÅÃÇÏ¿© ±âÁ¸ÀÇ ÀÎÅÍÇÁ¸®ÅÍ¹æ½Ä¸¸À» °¡Áö´Â ÄÄÆÄÀÏ·¯º¸´Ù´Â ÁÁÀº ¼º´ÉÀ» °¡Áø´Ù.
+    ì´ë ‡ê²Œ JVMì€ ì¸í„°í”„ë¦¬í„°ë°©ì‹ê³¼ ì¤‘ë³µë˜ëŠ” ì½”ë“œë“¤ì„ ìºì‹±í•˜ì—¬ ì‹¤í–‰í•˜ëŠ” ë°©ì‹ì„ ì±„íƒí•˜ì—¬ ê¸°ì¡´ì˜ ì¸í„°í”„ë¦¬í„°ë°©ì‹ë§Œì„ ê°€ì§€ëŠ” ì»´íŒŒì¼ëŸ¬ë³´ë‹¤ëŠ” ì¢‹ì€ ì„±ëŠ¥ì„ ê°€ì§„ë‹¤.
 
 ---
 
 2. Integer Cache
     ---
 
-    ¸àÅä´Ô²²¼­ ½Å¼±ÇÑ Ãæ°ÝÀ» ÁÖ¼Ì´Ù.
+    ë©˜í† ë‹˜ê»˜ì„œ ì‹ ì„ í•œ ì¶©ê²©ì„ ì£¼ì…¨ë‹¤.
 
     ```java
     Integer l1 = 100;
@@ -194,17 +194,17 @@ IoC¿Í ÇÔ²² ³ª¿À´Â °³³äÁß DI(ÀÇÁ¸°ü°èÁÖÀÔ)ÀÌ ÀÖ´Âµ¥, ÇÔ²² ÀÌÇØÇÏ¸é ÇÁ·¹ÀÓ¿öÅ©¿¡´ë
         System.out.println("l3.equals(l4)");
     }
     ```
-        °á°ú:l1==l2
+        ê²°ê³¼:l1==l2
             l1.equals(l2)
             l3.equals(l4)
 
-    equlas ¸Þ¼­µå´Â °ªÀÌ °°ÀºÁö¸¦ booleanÅ¸ÀÔÀ¸·Î ¹ÝÈ¯ÇÑ´Ù.
+    equlas ë©”ì„œë“œëŠ” ê°’ì´ ê°™ì€ì§€ë¥¼ booleaníƒ€ìž…ìœ¼ë¡œ ë°˜í™˜í•œë‹¤.
 
-    ´ç¿¬È÷ l1°úl2ÀÇ °ªÀº °°°í l3¿Íl4ÀÇ °ªµµ °°À¸´Ï °á°úÀÇ µÎ¹øÂ° ¼¼¹øÂ° ÁÙÀº ÀÌÇØ°¡ °£´Ù.
+    ë‹¹ì—°ížˆ l1ê³¼l2ì˜ ê°’ì€ ê°™ê³  l3ì™€l4ì˜ ê°’ë„ ê°™ìœ¼ë‹ˆ ê²°ê³¼ì˜ ë‘ë²ˆì§¸ ì„¸ë²ˆì§¸ ì¤„ì€ ì´í•´ê°€ ê°„ë‹¤.
 
-    ±×·±µ¥ ¿Ö l1==l2´Â trueÁö¸¸ l3==l4´Â falseÀÏ±î?
+    ê·¸ëŸ°ë° ì™œ l1==l2ëŠ” trueì§€ë§Œ l3==l4ëŠ” falseì¼ê¹Œ?
 
-    ÀÌÀ¯¸¦ ¾Ë±âÀ§ÇØ¼± IntegerÅ¬·¡½º°¡ °ªÀ» ¾î¶»°Ô ÀúÀåÇÏ´ÂÁö ¾Ë¾Æ¾ßÇÑ´Ù.
+    ì´ìœ ë¥¼ ì•Œê¸°ìœ„í•´ì„  Integerí´ëž˜ìŠ¤ê°€ ê°’ì„ ì–´ë–»ê²Œ ì €ìž¥í•˜ëŠ”ì§€ ì•Œì•„ì•¼í•œë‹¤.
 
     ```java 
         public static Integer valueOf(int i) {
@@ -214,96 +214,96 @@ IoC¿Í ÇÔ²² ³ª¿À´Â °³³äÁß DI(ÀÇÁ¸°ü°èÁÖÀÔ)ÀÌ ÀÖ´Âµ¥, ÇÔ²² ÀÌÇØÇÏ¸é ÇÁ·¹ÀÓ¿öÅ©¿¡´ë
         }
     ```
 
-    Integer l1 = 100; À¸·Î ÀÛ¼ºÇÏ¸é À§ valueOf¸Þ¼­µå·Î ³Ñ¾î°¡°ÔµÈ´Ù.
+    Integer l1 = 100; ìœ¼ë¡œ ìž‘ì„±í•˜ë©´ ìœ„ valueOfë©”ì„œë“œë¡œ ë„˜ì–´ê°€ê²Œëœë‹¤.
 
-    IntegerCache.low = -127 IntegerCache.hight = 128 ·Î Á¤Àû¸â¹ö·Î ÀÌ·ç¾îÁ®ÀÖ´Ù.
+    IntegerCache.low = -127 IntegerCache.hight = 128 ë¡œ ì •ì ë©¤ë²„ë¡œ ì´ë£¨ì–´ì ¸ìžˆë‹¤.
 
-    Áï iÀÇ °ªÀÌ -127~128ÀÌ¸é Ä³½Ã¿¡ ÀúÀåÇØ³õ°í Àç»ç¿ëÇÏ°ÔµÇ°í ±× ÀÌ¿ÜÀÇ °ªÀÌ µé¾î¿À¸é °´Ã¼¸¦ »õ·Î»ý¼ºÇØ¼­ ¹ÝÈ¯ÇØÁØ´Ù.
+    ì¦‰ iì˜ ê°’ì´ -127~128ì´ë©´ ìºì‹œì— ì €ìž¥í•´ë†“ê³  ìž¬ì‚¬ìš©í•˜ê²Œë˜ê³  ê·¸ ì´ì™¸ì˜ ê°’ì´ ë“¤ì–´ì˜¤ë©´ ê°ì²´ë¥¼ ìƒˆë¡œìƒì„±í•´ì„œ ë°˜í™˜í•´ì¤€ë‹¤.
 
-    ±×·¡¼­ 100À» ÇÒ´çÇÑ l1,l2´Â ==¿¬»êÀÌ trueÁö¸¸ 128À» ³Ñ´Â 200À» ÇÒ´çÇÑ l3,l4´Â false¸¦ ¹ÝÈ¯ÇÑ´Ù.
+    ê·¸ëž˜ì„œ 100ì„ í• ë‹¹í•œ l1,l2ëŠ” ==ì—°ì‚°ì´ trueì§€ë§Œ 128ì„ ë„˜ëŠ” 200ì„ í• ë‹¹í•œ l3,l4ëŠ” falseë¥¼ ë°˜í™˜í•œë‹¤.
 
-    ÀÌ°ÍÀ» Integer Cache¶ó ºÎ¸¥´Ù.
+    ì´ê²ƒì„ Integer Cacheë¼ ë¶€ë¥¸ë‹¤.
 
 ---
 
-3. ObjectÀÇ Equality ¿Í Identity
+3. Objectì˜ Equality ì™€ Identity
     ---
-    Integer Cache¸¦ ¾Ë¾Æº¸¸ç °´Ã¼ÀÇ °ªÀÌ µ¿ÀÏÇÑÁö ÁÖ¼Ò°ªÀÌ µ¿ÀÏÇÑÁö ¾Ë¾Æº¸¾Ò´Ù.
+    Integer Cacheë¥¼ ì•Œì•„ë³´ë©° ê°ì²´ì˜ ê°’ì´ ë™ì¼í•œì§€ ì£¼ì†Œê°’ì´ ë™ì¼í•œì§€ ì•Œì•„ë³´ì•˜ë‹¤.
 
-    °´Ã¼ÀÇ Equality´Â Value(°ª)ÀÇ µ¿ÀÏÇÔÀ» ¶æÇÑ´Ù.
+    ê°ì²´ì˜ EqualityëŠ” Value(ê°’)ì˜ ë™ì¼í•¨ì„ ëœ»í•œë‹¤.
 
-    °´Ã¼ÀÇ Identity´Â ÁÖ¼ÒÀÇ µ¿ÀÏÇÔÀ» ¶æÇÑ´Ù.
+    ê°ì²´ì˜ IdentityëŠ” ì£¼ì†Œì˜ ë™ì¼í•¨ì„ ëœ»í•œë‹¤.
 
     ```java
         Integer a = new Integer(1);
         Integer b = new Integer(1);
     ```
-    Equality¿¡ µû¸£¸é a¿Í b´Â °°´Ù. Value(1)°¡ °°±â¶§¹®ÀÌ´Ù.
-    Identity¿¡ µû¸£¸é µÎ °´Ã¼´Â ´Ù¸¥ ÁÖ¼Ò¸¦ °¡Áö¹Ç·Î °°Áö ¾Ê´Ù.
+    Equalityì— ë”°ë¥´ë©´ aì™€ bëŠ” ê°™ë‹¤. Value(1)ê°€ ê°™ê¸°ë•Œë¬¸ì´ë‹¤.
+    Identityì— ë”°ë¥´ë©´ ë‘ ê°ì²´ëŠ” ë‹¤ë¥¸ ì£¼ì†Œë¥¼ ê°€ì§€ë¯€ë¡œ ê°™ì§€ ì•Šë‹¤.
 
-    >Integer Cache¿¡ µû¸£¸é 1Àº CacheµÇ¾ßÇÏ´Â°Ô ¾Æ´Ñ°¡ ÀÇ¹®À» °¡Áú ¼ö ÀÖ°ÚÁö¸¸, À§ ÄÚµå´Â new¿¬»êÀÚ¸¦ »ç¿ëÇØ¼­ ÀÎ½ºÅÏ½º¸¦ »õ·Ó°Ô »ý¼ºÇß±â¶§¹®¿¡ Ä³½ÃµÇÁö¾Ê´Â´Ù.
+    >Integer Cacheì— ë”°ë¥´ë©´ 1ì€ Cacheë˜ì•¼í•˜ëŠ”ê²Œ ì•„ë‹Œê°€ ì˜ë¬¸ì„ ê°€ì§ˆ ìˆ˜ ìžˆê² ì§€ë§Œ, ìœ„ ì½”ë“œëŠ” newì—°ì‚°ìžë¥¼ ì‚¬ìš©í•´ì„œ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒˆë¡­ê²Œ ìƒì„±í–ˆê¸°ë•Œë¬¸ì— ìºì‹œë˜ì§€ì•ŠëŠ”ë‹¤.
 
     ```java 
         Integer a = new Integer(1);
         Integer b = a;
     ```
-    ÀÌ °æ¿ì¿£ ¾î¶³±î? a¿ÍbÀÇ °ªµµ°°°í ÁÖ¼Òµµ °°´Ù.
+    ì´ ê²½ìš°ì—” ì–´ë–¨ê¹Œ? aì™€bì˜ ê°’ë„ê°™ê³  ì£¼ì†Œë„ ê°™ë‹¤.
 
-    Á¤¸®ÇÏÀÚ¸é Identity´Â Equality¸¦ º¸ÀåÇÏÁö¸¸ Equality´Â Identity¸¦ º¸ÀåÇÏÁö ¾Ê´Â´Ù.
+    ì •ë¦¬í•˜ìžë©´ IdentityëŠ” Equalityë¥¼ ë³´ìž¥í•˜ì§€ë§Œ EqualityëŠ” Identityë¥¼ ë³´ìž¥í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 4. Checked Exception & Unchecked Exception
     ---
-    ExceptionÅ¬·¡½º¸¦ »ó¼Ó¹Þ´Â Å¬·¡½º Áß¿¡¼­ Runtime ExceptionÀ» Æ÷ÇÔÇÑ ÇÏÀ§Å¬·¡½º¸¦ Unchecked ExceptionÀÌ¶ó°íÇÑ´Ù.
+    Exceptioní´ëž˜ìŠ¤ë¥¼ ìƒì†ë°›ëŠ” í´ëž˜ìŠ¤ ì¤‘ì—ì„œ Runtime Exceptionì„ í¬í•¨í•œ í•˜ìœ„í´ëž˜ìŠ¤ë¥¼ Unchecked Exceptionì´ë¼ê³ í•œë‹¤.
 
-    Unchecked Exception ½ÇÇà½Ã ¹ß»ýÇÏ´Â ¿¹¿Ü·Î ¿¹¿ÜÃ³¸®¸¦ °­¿äÇÏÁö¾Ê´Â´Ù. ¸¸¾à ¿¹¿Ü°¡ ¹ß»ýÇÒ ¼ö ÀÖ´Â ¸ðµç °æ¿ì¿¡´ëÇØ ¿¹¿ÜÃ³¸®¸¦ °­¿äÇÏ°ÔµÇ¸é °³¹ßÀÚµéÀº ¹è¿­ÇÏ³ª¸¦ »ç¿ëÇÏ´Âµ¥µµ ¿¹¿ÜÃ³¸®¸¦ ÇØÁÖ¾î¾ßµÈ´Ù...
+    Unchecked Exception ì‹¤í–‰ì‹œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¡œ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ ê°•ìš”í•˜ì§€ì•ŠëŠ”ë‹¤. ë§Œì•½ ì˜ˆì™¸ê°€ ë°œìƒí•  ìˆ˜ ìžˆëŠ” ëª¨ë“  ê²½ìš°ì—ëŒ€í•´ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ ê°•ìš”í•˜ê²Œë˜ë©´ ê°œë°œìžë“¤ì€ ë°°ì—´í•˜ë‚˜ë¥¼ ì‚¬ìš©í•˜ëŠ”ë°ë„ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ í•´ì£¼ì–´ì•¼ëœë‹¤...
 
-    ±×¿¡ ¹ÝÇØ Checked ExceptionÀº ¿¹¿ÜÃ³¸®°¡ ÇÊ¼öÀûÀÌ´Ù. ÄÄÆÄÀÏ ´Ü°è¿¡¼­ºÎÅÍ ¿¹¿ÜÃ³¸®¸¦ °­¿äÇØ¼­ ÄÄÆÄÀÏÀüºÎÅÍ °³¹ßÀÚ´Â ¿¹¿ÜÃ³¸®¸¦ ÇØÁÖ¾î¾ßÇÑ´Ù.
+    ê·¸ì— ë°˜í•´ Checked Exceptionì€ ì˜ˆì™¸ì²˜ë¦¬ê°€ í•„ìˆ˜ì ì´ë‹¤. ì»´íŒŒì¼ ë‹¨ê³„ì—ì„œë¶€í„° ì˜ˆì™¸ì²˜ë¦¬ë¥¼ ê°•ìš”í•´ì„œ ì»´íŒŒì¼ì „ë¶€í„° ê°œë°œìžëŠ” ì˜ˆì™¸ì²˜ë¦¬ë¥¼ í•´ì£¼ì–´ì•¼í•œë‹¤.
 
-    ±×¸®°í ¶Ç ÇÑ°¡Áö Â÷ÀÌÁ¡Àº Checked ExceptionÀº ·Ñ¹éÇÏÁö¾Ê°í Unchecked ExceptionÀº ·Ñ¹éÇÑ´Ù´Â Á¡ÀÌ´Ù.
+    ê·¸ë¦¬ê³  ë˜ í•œê°€ì§€ ì°¨ì´ì ì€ Checked Exceptionì€ ë¡¤ë°±í•˜ì§€ì•Šê³  Unchecked Exceptionì€ ë¡¤ë°±í•œë‹¤ëŠ” ì ì´ë‹¤.
 
-    ·Ñ¹éÀÌ¶õ ¼öÇàµÈ ÀÛ¾÷À» ¹Ý¿µÇÏÁö¾Ê´Â°ÍÀ» ¸»ÇÑ´Ù.
+    ë¡¤ë°±ì´ëž€ ìˆ˜í–‰ëœ ìž‘ì—…ì„ ë°˜ì˜í•˜ì§€ì•ŠëŠ”ê²ƒì„ ë§í•œë‹¤.
 
 ---
 
-5. °­Å¸ÀÔ & ¾àÅ¸ÀÔ
+5. ê°•íƒ€ìž… & ì•½íƒ€ìž…
     ---
-    °­Å¸ÀÔ°ú ¾àÅ¸ÀÔ¿¡ ¾Õ¼­¼­ Á¤ÀûÅ¸ÀÔ°ú µ¿ÀûÅ¸ÀÔ¿¡´ëÇØ ¾Ë¾Æº¸ÀÚ
+    ê°•íƒ€ìž…ê³¼ ì•½íƒ€ìž…ì— ì•žì„œì„œ ì •ì íƒ€ìž…ê³¼ ë™ì íƒ€ìž…ì—ëŒ€í•´ ì•Œì•„ë³´ìž
 
-    Á¤ÀûÅ¸ÀÔÀº ÄÄÆÄÀÏ½Ã¿¡ ÀÚ·áÇüÀÌ °áÁ¤µÇ¾î¾ßÇÑ´Ù.
+    ì •ì íƒ€ìž…ì€ ì»´íŒŒì¼ì‹œì— ìžë£Œí˜•ì´ ê²°ì •ë˜ì–´ì•¼í•œë‹¤.
     ```java
         int a = 2;
         double b = 2.3;
     ```
-    À§¿Í°°ÀÌ ÀÚ¹ÙÄÚµå´Â ÄÄÆÄÀÏ ÀÌÀü¿¡ Å¸ÀÔÀ» ¸í½ÃÇØÁà¾ß¸¸ÇÑ´Ù. ÀÌ·¯ÇÑ ¾ð¾î¸¦ Á¤ÀûÅ¸ÀÔ¾ð¾î¶ó°íÇÑ´Ù. Á¤ÀûÅ¸ÀÔÀÇ ¾ð¾î¿¡´Â ÀÚÁÖ »ç¿ëÇß´ø C¾ð¾î°¡ ÀÖ´Âµ¥, C¾ð¾î ¶ÇÇÑ Å¸ÀÔÀ» ÄÄÆÄÀÏ ÀÌÀü¿¡ ¸í½ÃÇØÁà¾ßÇÑ´Ù.
+    ìœ„ì™€ê°™ì´ ìžë°”ì½”ë“œëŠ” ì»´íŒŒì¼ ì´ì „ì— íƒ€ìž…ì„ ëª…ì‹œí•´ì¤˜ì•¼ë§Œí•œë‹¤. ì´ëŸ¬í•œ ì–¸ì–´ë¥¼ ì •ì íƒ€ìž…ì–¸ì–´ë¼ê³ í•œë‹¤. ì •ì íƒ€ìž…ì˜ ì–¸ì–´ì—ëŠ” ìžì£¼ ì‚¬ìš©í–ˆë˜ Cì–¸ì–´ê°€ ìžˆëŠ”ë°, Cì–¸ì–´ ë˜í•œ íƒ€ìž…ì„ ì»´íŒŒì¼ ì´ì „ì— ëª…ì‹œí•´ì¤˜ì•¼í•œë‹¤.
 
-    Á¤ÀûÅ¸ÀÔÀº Å¸ÀÔ¿¡´ëÇÑ ¾ÈÁ¤¼ºÀ» º¸ÀåÇÑ´Ù. ¶ÇÇÑ ÄÄÆÄÀÏ½Ã¿¡ Å¸ÀÔÀ» °áÁ¤ÇÏ±â¶§¹®¿¡ ·±Å¸ÀÓ¼º´ÉÀº µ¿ÀûÅ¸ÀÔº¸´Ù ³ô´Ù. ÇÏÁö¸¸ µ¿ÀûÅ¸ÀÔ¿¡ºñÇØ À¯¿¬¼ºÀº ¶³¾îÁø´Ù. 
+    ì •ì íƒ€ìž…ì€ íƒ€ìž…ì—ëŒ€í•œ ì•ˆì •ì„±ì„ ë³´ìž¥í•œë‹¤. ë˜í•œ ì»´íŒŒì¼ì‹œì— íƒ€ìž…ì„ ê²°ì •í•˜ê¸°ë•Œë¬¸ì— ëŸ°íƒ€ìž„ì„±ëŠ¥ì€ ë™ì íƒ€ìž…ë³´ë‹¤ ë†’ë‹¤. í•˜ì§€ë§Œ ë™ì íƒ€ìž…ì—ë¹„í•´ ìœ ì—°ì„±ì€ ë–¨ì–´ì§„ë‹¤. 
 
-    µ¿ÀûÅ¸ÀÔ¾ð¾î´Â ·±Å¸ÀÓ½Ã¿¡ ÀÚ·áÇüÀ» Ãß·ÐÇÏ±â¶§¹®¿¡ ¼Ò½ºÄÚµå ÀÛ¼º½Ã¿¡ Å¸ÀÔÀ» ¸í½ÃÇØÁÙ ÇÊ¿ä°¡ ¾ø´Ù. »ý°¢¸¸ÇØµµ ÆíÇÒ °Í °°´Ù. ÇÏÁö¸¸ À¯¿¬ÇÔ°ú È¿À²¼ºÀ» ¾òÀº´ë½Å Å¸ÀÔ¿¡´ëÇÑ ¸®½ºÅ©¸¦ °¨¼öÇØ¾ßÇÑ´Ù. Å¸ÀÔ¿¡´ëÇÑ ¿À·ù¸¦ °ËÁõÇÏ±âµµ ½±Áö°¡ ¾Ê´Ù.
+    ë™ì íƒ€ìž…ì–¸ì–´ëŠ” ëŸ°íƒ€ìž„ì‹œì— ìžë£Œí˜•ì„ ì¶”ë¡ í•˜ê¸°ë•Œë¬¸ì— ì†ŒìŠ¤ì½”ë“œ ìž‘ì„±ì‹œì— íƒ€ìž…ì„ ëª…ì‹œí•´ì¤„ í•„ìš”ê°€ ì—†ë‹¤. ìƒê°ë§Œí•´ë„ íŽ¸í•  ê²ƒ ê°™ë‹¤. í•˜ì§€ë§Œ ìœ ì—°í•¨ê³¼ íš¨ìœ¨ì„±ì„ ì–»ì€ëŒ€ì‹  íƒ€ìž…ì—ëŒ€í•œ ë¦¬ìŠ¤í¬ë¥¼ ê°ìˆ˜í•´ì•¼í•œë‹¤. íƒ€ìž…ì—ëŒ€í•œ ì˜¤ë¥˜ë¥¼ ê²€ì¦í•˜ê¸°ë„ ì‰½ì§€ê°€ ì•Šë‹¤.
 
-    °­Å¸ÀÔ°ú ¾àÅ¸ÀÔÀÌ¶õ º¯¼ö°£¿¡ Çüº¯È¯À» ¾î´ÀÁ¤µµ·Î °Ë»çÇÏ´À³Ä¿¡ Â÷ÀÌÁ¡ÀÌ ÀÖ´Ù.
+    ê°•íƒ€ìž…ê³¼ ì•½íƒ€ìž…ì´ëž€ ë³€ìˆ˜ê°„ì— í˜•ë³€í™˜ì„ ì–´ëŠì •ë„ë¡œ ê²€ì‚¬í•˜ëŠëƒì— ì°¨ì´ì ì´ ìžˆë‹¤.
 
-    ÀÌ¸§ ±×´ë·Î °­Å¸ÀÔÀº Çüº¯È¯¿¡ ±²ÀåÈ÷ ¾ö°ÝÇÏ´Ù. ¾àÅ¸ÀÔÀº ¹Ý´ëÀÌ´Ù.
+    ì´ë¦„ ê·¸ëŒ€ë¡œ ê°•íƒ€ìž…ì€ í˜•ë³€í™˜ì— êµ‰ìž¥ížˆ ì—„ê²©í•˜ë‹¤. ì•½íƒ€ìž…ì€ ë°˜ëŒ€ì´ë‹¤.
 
-    ÀÚ¹Ù´Â ÀÚµ¿ Çüº¯È¯À» Áö¿øÇÑ´Ù.
+    ìžë°”ëŠ” ìžë™ í˜•ë³€í™˜ì„ ì§€ì›í•œë‹¤.
 
     ```java
         byte a = 1;
         int b = a;
     ```
-    À§ ÀÚ¹ÙÄÚµå´Â ¿À·ù°¡ ¹ß»ýÇÏÁö¾Ê´Â´Ù. ÀÚµ¿À¸·Î Çüº¯È¯ÀÌµÇ¾î ÀúÀåµÇ±â¶§¹®ÀÌ´Ù.
+    ìœ„ ìžë°”ì½”ë“œëŠ” ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì§€ì•ŠëŠ”ë‹¤. ìžë™ìœ¼ë¡œ í˜•ë³€í™˜ì´ë˜ì–´ ì €ìž¥ë˜ê¸°ë•Œë¬¸ì´ë‹¤.
 
-    ¹è¿ìÁö¾ÊÀº ¾ð¾îÁö¸¸ ´ëÇ¥ÀûÀÎ °­Å¸ÀÔ¾ð¾îÀÎ Go¾ð¾î¸¦ »ìÆìº¸¸é,
+    ë°°ìš°ì§€ì•Šì€ ì–¸ì–´ì§€ë§Œ ëŒ€í‘œì ì¸ ê°•íƒ€ìž…ì–¸ì–´ì¸ Goì–¸ì–´ë¥¼ ì‚´íŽ´ë³´ë©´,
 
     ```Go
         var num1 int = 17
         var num2 float32 = 19.2
         var sum1 float32 = num1 + num2	 // Error
     ```
-    Go¾ð¾î´Â Çüº¯È¯¿¡ ¸Å¿ì ¾ö°ÝÇÏ°Ô ¹ÝÀÀÇÑ´Ù.
+    Goì–¸ì–´ëŠ” í˜•ë³€í™˜ì— ë§¤ìš° ì—„ê²©í•˜ê²Œ ë°˜ì‘í•œë‹¤.
 
-    ±×·¡¼­ ¸àÅä´Ô²²¼­ ¸»¾¸ÇÏ½Å "¹®ÀÚ¿­" + 1 = "¹®ÀÚ¿­1" ÀÌ µÇ´Â ÀÌÀ¯´Â ÀÚ¹Ù´Â ¹¬½ÃÀû Çüº¯È¯ÀÌ Çã¶ôµÈ ¾ð¾îÀÌ±â¶§¹®ÀÌ´Ù.
+    ê·¸ëž˜ì„œ ë©˜í† ë‹˜ê»˜ì„œ ë§ì”€í•˜ì‹  "ë¬¸ìžì—´" + 1 = "ë¬¸ìžì—´1" ì´ ë˜ëŠ” ì´ìœ ëŠ” ìžë°”ëŠ” ë¬µì‹œì  í˜•ë³€í™˜ì´ í—ˆë½ëœ ì–¸ì–´ì´ê¸°ë•Œë¬¸ì´ë‹¤.
 
-    **(Âü°í. Á¤ÀûÅ¸ÀÔ°ú µ¿ÀûÅ¸ÀÔÀº °­Å¸ÀÔ,¾àÅ¸ÀÔ°ú´Â ´Ù¸¥ °³³äÀÓÀ» ÀÎÁöÇÏÀÚ.)**
+    **(ì°¸ê³ . ì •ì íƒ€ìž…ê³¼ ë™ì íƒ€ìž…ì€ ê°•íƒ€ìž…,ì•½íƒ€ìž…ê³¼ëŠ” ë‹¤ë¥¸ ê°œë…ìž„ì„ ì¸ì§€í•˜ìž.)**
 
 
 
