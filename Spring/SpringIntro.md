@@ -1,57 +1,57 @@
 Spring Intro
 ==
-½ºÇÁ¸µÀ» °øºÎÇÏ¸ç °£´ÜÇÑ **¸Þ¸ð**¸¦ ³²±â·ÁÇÑ´Ù.
+ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ë©° ê°„ë‹¨í•œ **ë©”ëª¨**ë¥¼ ë‚¨ê¸°ë ¤í•œë‹¤.
 
 ---
 
-Spring ¿¡¼­ API¶õ
+Spring ì—ì„œ APIëž€
 ---
-Spring¿¡¼­ API´Â °´Ã¼¸¦ ±×´ë·Î ³»·ÁÁÙ ¶§ »ç¿ëÇÑ´Ù. Áï, JSON¹æ½ÄÀ¸·Î °´Ã¼µ¥ÀÌÅÍ¸¦ Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´äÇØÁÖ´Â°ÍÀÌ´Ù. ÀÌ¶§ @Responsebody ¾î³ëÅ×ÀÌ¼ÇÀ» ¾²´Âµ¥ HTTP¸Þ¼¼ÁöÀÇ bodyºÎºÐ¿¡ °´Ã¼¸¦ Á÷Á¢ ³Ö¾îÁÖ´Â °ÍÀ» ¸»ÇÑ´Ù.
+Springì—ì„œ APIëŠ” ê°ì²´ë¥¼ ê·¸ëŒ€ë¡œ ë‚´ë ¤ì¤„ ë•Œ ì‚¬ìš©í•œë‹¤. ì¦‰, JSONë°©ì‹ìœ¼ë¡œ ê°ì²´ë°ì´í„°ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µí•´ì£¼ëŠ”ê²ƒì´ë‹¤. ì´ë•Œ @Responsebody ì–´ë…¸í…Œì´ì…˜ì„ ì“°ëŠ”ë° HTTPë©”ì„¸ì§€ì˜ bodyë¶€ë¶„ì— ê°ì²´ë¥¼ ì§ì ‘ ë„£ì–´ì£¼ëŠ” ê²ƒì„ ë§í•œë‹¤.
 
-°´Ã¼¸¦ º¸³»´Âµ¥ ¾î¶»°Ô JSONÀ¸·Î º¯È¯µÇ¾î ³»·Á°¡´ÂÁö ±Ã±ÝÇÒ ¼ö ÀÖ´Âµ¥, Spring ³»ºÎ¿¡¼­ JSONConverter°¡ ÀÛµ¿ÇÏ¿© º¯È¯µÈ´Ù. ÀÌ ¿Ü¿¡µµ ¹®ÀÚ¿­À» ±×´ë·Î ³»·ÁÁÖ´Â StringConverterµµ Á¸ÀçÇÑ´Ù.
+ê°ì²´ë¥¼ ë³´ë‚´ëŠ”ë° ì–´ë–»ê²Œ JSONìœ¼ë¡œ ë³€í™˜ë˜ì–´ ë‚´ë ¤ê°€ëŠ”ì§€ ê¶ê¸ˆí•  ìˆ˜ ìžˆëŠ”ë°, Spring ë‚´ë¶€ì—ì„œ JSONConverterê°€ ìž‘ë™í•˜ì—¬ ë³€í™˜ëœë‹¤. ì´ ì™¸ì—ë„ ë¬¸ìžì—´ì„ ê·¸ëŒ€ë¡œ ë‚´ë ¤ì£¼ëŠ” StringConverterë„ ì¡´ìž¬í•œë‹¤.
 
 ---
 
 TDD
 ---
-Áö±Ý±îÁø ±¸ÇöÀ» ´Ù ³¡³»°í TestCase¸¦ ÀÛ¼ºÇÏ´Â ÁÙ ¾Ë¾ÒÁö¸¸, TDD¶õ Å×½ºÆ®ÁÖµµ°³¹ßÀÌ¶óÇÏ´Âµ¥, ¸ÕÀú TestCase¸¦ ÀÛ¼ºÇÏ°í ÀÌ¿¡ ¸Â´Â ±¸ÇöÃ¼¸¦ ±¸ÇöÇÏ´Â °ÍÀ» ¸»ÇÑ´Ù. (PS Çö¾÷ ¹é¿£µå °³¹ßÀÚ¿¡°Ô Áö±Ý ¹¹ÇÏ°í ÀÖ³Ä°í ¹°¾îº¸¸é 60ÇÁ·Î ÀÌ»óÀº Å×½ºÆ®ÄÉÀÌ½º ÀÛ¼ºÁßÀÌ¶ó°í ´ë´äÇÑ´Ù°í ÇÑ´Ù. ±×¸¸Å­ Å×½ºÆ®ÄÉÀÌ½ºÀÛ¼ºÀº Áß¿äÇÑ°Í °°´Ù...)
+ì§€ê¸ˆê¹Œì§„ êµ¬í˜„ì„ ë‹¤ ëë‚´ê³  TestCaseë¥¼ ìž‘ì„±í•˜ëŠ” ì¤„ ì•Œì•˜ì§€ë§Œ, TDDëž€ í…ŒìŠ¤íŠ¸ì£¼ë„ê°œë°œì´ë¼í•˜ëŠ”ë°, ë¨¼ì € TestCaseë¥¼ ìž‘ì„±í•˜ê³  ì´ì— ë§žëŠ” êµ¬í˜„ì²´ë¥¼ êµ¬í˜„í•˜ëŠ” ê²ƒì„ ë§í•œë‹¤. (PS í˜„ì—… ë°±ì—”ë“œ ê°œë°œìžì—ê²Œ ì§€ê¸ˆ ë­í•˜ê³  ìžˆëƒê³  ë¬¼ì–´ë³´ë©´ 60í”„ë¡œ ì´ìƒì€ í…ŒìŠ¤íŠ¸ì¼€ì´ìŠ¤ ìž‘ì„±ì¤‘ì´ë¼ê³  ëŒ€ë‹µí•œë‹¤ê³  í•œë‹¤. ê·¸ë§Œí¼ í…ŒìŠ¤íŠ¸ì¼€ì´ìŠ¤ìž‘ì„±ì€ ì¤‘ìš”í•œê²ƒ ê°™ë‹¤...)
 
 ---
 
-MVC ±¸Á¶
+MVC êµ¬ì¡°
 ----
-¿¾³¯ ¿¾Àû È£¶ûÀÌ ´ã¹èÇÇ¿ì´ø ½ÃÀý¿£ Model°ú View ±×¸®°í Controller¸¦ ÇÑ °÷¿¡ ¿Ë±âÁ¾±â ¸ð¾Æ³õ°í °³¹ßÀ» Çß´Ù°íÇÑ´Ù.
+ì˜›ë‚  ì˜›ì  í˜¸ëž‘ì´ ë‹´ë°°í”¼ìš°ë˜ ì‹œì ˆì—” Modelê³¼ View ê·¸ë¦¬ê³  Controllerë¥¼ í•œ ê³³ì— ì˜¹ê¸°ì¢…ê¸° ëª¨ì•„ë†“ê³  ê°œë°œì„ í–ˆë‹¤ê³ í•œë‹¤.
 
-°³¹ß¹æ¹ýÀÌ ÁøÈ­ÇÔ¿¡µû¶ó Model View Controller¸¦ °¢°¢ÀÇ Ã¥ÀÓ¿¡ ¸Â°Ô ºÐ¸®ÇØ³Â°í ÀÌ °³¹ßÆÐÅÏÀÌ MVCÆÐÅÏÀÌ´Ù.
+ê°œë°œë°©ë²•ì´ ì§„í™”í•¨ì—ë”°ë¼ Model View Controllerë¥¼ ê°ê°ì˜ ì±…ìž„ì— ë§žê²Œ ë¶„ë¦¬í•´ëƒˆê³  ì´ ê°œë°œíŒ¨í„´ì´ MVCíŒ¨í„´ì´ë‹¤.
 
-Áö±Ý±îÁö ÀÌÇØÇÑ ³»¿ëÀº Controller´Â ³»Àå¼­¹ö°¡ ³Ñ°ÜÁØ ¿äÃ»À» ¹Þ¾Æ¼­ ¿äÃ»¿¡ °üÇÑ µ¥ÀÌÅÍ¸¦ Model¿¡ ´ã¾Æ returnÇØÁÖ´Âµ¥ ÀÌ ¶§ viewResolver°¡ ÇØ´çÇÏ´Â View¸¦ Ã£°í ÅÛÇÃ¸´¿£ÁøÀ» ¿¬°á½ÃÄÑ¼­ ÅÛÇÃ¸´¿£ÁøÀÌ ModelÀ» ÀÌ¿ëÇØ ·»´õ¸µÇÑ ÈÄ¿¡ Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÇØ´ç ÀÀ´äÀ» ³»·ÁÁØ´Ù.
+ì§€ê¸ˆê¹Œì§€ ì´í•´í•œ ë‚´ìš©ì€ ControllerëŠ” ë‚´ìž¥ì„œë²„ê°€ ë„˜ê²¨ì¤€ ìš”ì²­ì„ ë°›ì•„ì„œ ìš”ì²­ì— ê´€í•œ ë°ì´í„°ë¥¼ Modelì— ë‹´ì•„ returní•´ì£¼ëŠ”ë° ì´ ë•Œ viewResolverê°€ í•´ë‹¹í•˜ëŠ” Viewë¥¼ ì°¾ê³  í…œí”Œë¦¿ì—”ì§„ì„ ì—°ê²°ì‹œì¼œì„œ í…œí”Œë¦¿ì—”ì§„ì´ Modelì„ ì´ìš©í•´ ë Œë”ë§í•œ í›„ì— í´ë¼ì´ì–¸íŠ¸ì—ê²Œ í•´ë‹¹ ì‘ë‹µì„ ë‚´ë ¤ì¤€ë‹¤.
 
 ---
 
-ÄÁÅ×ÀÌ³Ê¿Í ºó
+ì»¨í…Œì´ë„ˆì™€ ë¹ˆ
 ----
-ÈÄ¿¡ ÀÚ¼¼È÷ ÇÐ½ÀÇÏ°ÚÁö¸¸ ÀÏ´Ü ºóÀÌ¶õ ÀÚ¹ÙÀÇ °´Ã¼¸¦ ½ºÇÁ¸µÀÌ »ý¼ºÇÏ¿© ÄÁÅ×ÀÌ³Ê¿¡ º¸°üÇÑ´Ù´Â Á¡±îÁö ÀÌÇØÇß´Ù. ±¸Ã¼ÀûÀ¸·Î ¾î¶² ±¸Á¶·Î »ý¼ºÇÏ¿© ÀúÀåÇÏ´ÂÁö´Â ¸ð¸£°Ú´Ù.
+í›„ì— ìžì„¸ížˆ í•™ìŠµí•˜ê² ì§€ë§Œ ì¼ë‹¨ ë¹ˆì´ëž€ ìžë°”ì˜ ê°ì²´ë¥¼ ìŠ¤í”„ë§ì´ ìƒì„±í•˜ì—¬ ì»¨í…Œì´ë„ˆì— ë³´ê´€í•œë‹¤ëŠ” ì ê¹Œì§€ ì´í•´í–ˆë‹¤. êµ¬ì²´ì ìœ¼ë¡œ ì–´ë–¤ êµ¬ì¡°ë¡œ ìƒì„±í•˜ì—¬ ì €ìž¥í•˜ëŠ”ì§€ëŠ” ëª¨ë¥´ê² ë‹¤.
 
-ÄÄÆ÷³ÍÆ® ½ºÄµÀ» ÅëÇØ (@Controller, @Service, @Repository, @Component µî) ½ºÇÁ¸µÀÌ ¿Ã¶ó¿Ã¶§ ºóÀ¸·Î µî·ÏµÇ°í ÇØ´ç °´Ã¼°¡ ¿©·¯¹ø È£ÃâµÇ´õ¶óµµ ´Ü ÇÏ³ªÀÇ ÀÎ½ºÅÏ½º¸¸ ¹ÝÈ¯ÇÏ°ÔµÈ´Ù.
+ì»´í¬ë„ŒíŠ¸ ìŠ¤ìº”ì„ í†µí•´ (@Controller, @Service, @Repository, @Component ë“±) ìŠ¤í”„ë§ì´ ì˜¬ë¼ì˜¬ë•Œ ë¹ˆìœ¼ë¡œ ë“±ë¡ë˜ê³  í•´ë‹¹ ê°ì²´ê°€ ì—¬ëŸ¬ë²ˆ í˜¸ì¶œë˜ë”ë¼ë„ ë‹¨ í•˜ë‚˜ì˜ ì¸ìŠ¤í„´ìŠ¤ë§Œ ë°˜í™˜í•˜ê²Œëœë‹¤.
 
-ÀÌ¸¦ ½Ì±ÛÅæÀÌ¶ó°í ºÎ¸¥´Ù.
+ì´ë¥¼ ì‹±ê¸€í†¤ì´ë¼ê³  ë¶€ë¥¸ë‹¤.
 
-ºóÀ» ÀÌ¿ëÇØ¼­ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ý¼ºÀÚ¿¡ ºÙ¿©ÁÖ¸é springÀÌ ÇØ´ç °´Ã¼¸¦ ÁÖÀÔÇØÁØ´Ù. ÀÌ¸¦ DI(Dependency Ingection)[ÀÇÁ¸°ü°èÁÖÀÔ]ÀÌ¶ó ºÎ¸¥´Ù.
+ë¹ˆì„ ì´ìš©í•´ì„œ @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ìƒì„±ìžì— ë¶™ì—¬ì£¼ë©´ springì´ í•´ë‹¹ ê°ì²´ë¥¼ ì£¼ìž…í•´ì¤€ë‹¤. ì´ë¥¼ DI(Dependency Ingection)[ì˜ì¡´ê´€ê³„ì£¼ìž…]ì´ë¼ ë¶€ë¥¸ë‹¤.
 
 ---
 
 DAO, VO, DTO
 ---
-¸éÁ¢¶§ ÇØ´ç °³³ä¿¡´ëÇÑ ´äÀ» **ÇÏ³ªµµ** ¸øÇß´Ù.
+ë©´ì ‘ë•Œ í•´ë‹¹ ê°œë…ì—ëŒ€í•œ ë‹µì„ **í•˜ë‚˜ë„** ëª»í–ˆë‹¤.
 
-¿­½ÉÈ÷ °øºÎÇØ¼­ ¾Ë¾Æ³õÀÚ
+ì—´ì‹¬ížˆ ê³µë¶€í•´ì„œ ì•Œì•„ë†“ìž
 
 ----
 @Configuartion
 ---
-½ºÇÁ¸µÄÁÅ×ÀÌ³Ê¿¡ ºóÀ¸·Î µî·ÏÇÏ´Â ¹æ¹ýÀº @Controller ¾î³ëÅ×ÀÌ¼Ç°°Àº @Component ¾î³ëÅ×ÀÌ¼ÇÀ» ºÙ¿©Áàµµ µÇÁö¸¸, ´ÙÇü¼ºÀ» ÀÌ¿ëÇØ¼­ À¯¿¬ÇÑ ÇÁ·Î±×·¡¹ÖÀ» À§ÇØ ÀÚ¹ÙÄÚµå·Î Á÷Á¢ ºóÀ» µî·ÏÇØ ÁÙ ¼ö ÀÖ´Ù.
+ìŠ¤í”„ë§ì»¨í…Œì´ë„ˆì— ë¹ˆìœ¼ë¡œ ë“±ë¡í•˜ëŠ” ë°©ë²•ì€ @Controller ì–´ë…¸í…Œì´ì…˜ê°™ì€ @Component ì–´ë…¸í…Œì´ì…˜ì„ ë¶™ì—¬ì¤˜ë„ ë˜ì§€ë§Œ, ë‹¤í˜•ì„±ì„ ì´ìš©í•´ì„œ ìœ ì—°í•œ í”„ë¡œê·¸ëž˜ë°ì„ ìœ„í•´ ìžë°”ì½”ë“œë¡œ ì§ì ‘ ë¹ˆì„ ë“±ë¡í•´ ì¤„ ìˆ˜ ìžˆë‹¤.
 
-Å¬·¡½º·¹º§¿¡ @ConfigurationÀ» ºÙ¿©ÁÖ¸é ÇØ´ç Å¬·¡½º´Â ÀÚ¹Ù ºó¿¡ µî·ÏµÉ °´Ã¼µéÀ» ¸ð¾Æ³õÀº Å¬·¡½º¶ó´Â°ÍÀ» ¾Ë·ÁÁÖ°ÔµÈ´Ù.
+í´ëž˜ìŠ¤ë ˆë²¨ì— @Configurationì„ ë¶™ì—¬ì£¼ë©´ í•´ë‹¹ í´ëž˜ìŠ¤ëŠ” ìžë°” ë¹ˆì— ë“±ë¡ë  ê°ì²´ë“¤ì„ ëª¨ì•„ë†“ì€ í´ëž˜ìŠ¤ë¼ëŠ”ê²ƒì„ ì•Œë ¤ì£¼ê²Œëœë‹¤.
 
 ```java
 @Configuration
@@ -69,9 +69,9 @@ public class SpringConfig {
 }
 ```
 
-À§¿Í °°ÀÌ ¸Þ¼­µå¿¡ »ý¼ºÀÚ·Î °´Ã¼¸¦ »ý¼ºÇØÁÖ¸é ÀÌ ÀÎ½ºÅÏ½º¸¦ ÀÚ¹Ù ºó¿¡ µî·ÏÇØÁÖ°ÔµÈ´Ù. @Bean¿¡ Ãß°¡·Î °ªÀ» ³Ñ°ÜÁà¼­ Bean id¸¦ ¼³Á¤ÇØÁÖ´Â ¹æ¹ýµµ ÀÖ´Ù.
+ìœ„ì™€ ê°™ì´ ë©”ì„œë“œì— ìƒì„±ìžë¡œ ê°ì²´ë¥¼ ìƒì„±í•´ì£¼ë©´ ì´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìžë°” ë¹ˆì— ë“±ë¡í•´ì£¼ê²Œëœë‹¤. @Beanì— ì¶”ê°€ë¡œ ê°’ì„ ë„˜ê²¨ì¤˜ì„œ Bean idë¥¼ ì„¤ì •í•´ì£¼ëŠ” ë°©ë²•ë„ ìžˆë‹¤.
 
-Ãß°¡·Î @Controller·Î Á÷Á¢ ºóÀ¸·Î µî·ÏÇÏ°í @Autowired·Î ÀÇÁ¸°ü°è¸¦ ÁÖÀÔ¹ÞÀ» ¼ö ÀÖ´Âµ¥ ÀÌ ¿Ü¿¡µµ ÇÊµå ÁÖÀÔ setterÁÖÀÔÀÌ ÀÖÁö¸¸ º¸Åë »ý¼ºÀÚ·Î ÁÖÀÔ¹Þ´Â°ÍÀÌ ÁÁ´Ù.
+ì¶”ê°€ë¡œ @Controllerë¡œ ì§ì ‘ ë¹ˆìœ¼ë¡œ ë“±ë¡í•˜ê³  @Autowiredë¡œ ì˜ì¡´ê´€ê³„ë¥¼ ì£¼ìž…ë°›ì„ ìˆ˜ ìžˆëŠ”ë° ì´ ì™¸ì—ë„ í•„ë“œ ì£¼ìž… setterì£¼ìž…ì´ ìžˆì§€ë§Œ ë³´í†µ ìƒì„±ìžë¡œ ì£¼ìž…ë°›ëŠ”ê²ƒì´ ì¢‹ë‹¤.
 
-ÇÊµå ÁÖÀÔÀº ³ªÁß¿¡ °ªÀ» º¯°æÇØÁÙ ¼ö°¡ ¾ø°í, setter´Â public¸Þ¼­µå·Î ¼±¾ðÇØ¾ßÇÏ±â¶§¹®¿¡ ¿ÜºÎ¿¡ ³ëÃâµÇ¹Ç·Î ÁÁÁö¸øÇÏ´Ù.
+í•„ë“œ ì£¼ìž…ì€ ë‚˜ì¤‘ì— ê°’ì„ ë³€ê²½í•´ì¤„ ìˆ˜ê°€ ì—†ê³ , setterëŠ” publicë©”ì„œë“œë¡œ ì„ ì–¸í•´ì•¼í•˜ê¸°ë•Œë¬¸ì— ì™¸ë¶€ì— ë…¸ì¶œë˜ë¯€ë¡œ ì¢‹ì§€ëª»í•˜ë‹¤.
 
