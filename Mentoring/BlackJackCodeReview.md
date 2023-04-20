@@ -305,5 +305,768 @@ IoC와 함께 나오는 개념중 DI(의존관계주입)이 있는데, 함께 �
 
     **(참고. 정적타입과 동적타입은 강타입,약타입과는 다른 개념임을 인지하자.)**
 
+---
+
+ArrayList의 초기화 그리고 final
+===
+ArrayList의 용량
+---
+```java
+List<INSTANCE> test = ArrayList<>();
+```
+일반적으로 객체를 담는 ArrayList를 기본생성자로 생성하면 크기가 0인 인스턴스가 생성된다.
+
+그 후에 add()를 호출하면 디폴트값인 10만큼의 용량으로 늘어나게된다.
+
+```java
+// ArrayList 내부
+private static final int DEFAULT_CAPACITY = 10;
+```
+
+이 후에 10개의 객체를 저장하고 다시 add()메소드를 호출하게되면 기존용량/2 만큼 증가해 15인 ArryList가 새로 생성 후 값을 복사해서 다시 인스턴스를 반환한다.
+
+정리하자면 0 -> 10 -> 15 -> 22 -> 33 ~
+으로 용량은 증가한다.
+
+내가 저장해야할 용량을 정확히 알고있다면, 처음부터 용량을 지정해서 생성해주는 것이 좋다. 값을 복사해서 새로운 인스턴스를 반환하는데 비용이 들기때문이다.
+
+List에 final키워드에 대하여
+---
+```java
+final List<INSTANCE> test = ArrayList<>();
+```
+test라는 참조변수는 ArryList인스턴스의 주소를 가지고 있다.
+
+final키워드는 재할당이 불가능하게하는 키워드다. 다시말해 test참조변수는 새로운 ArrayList를 반환받아 재할당이 불가능한 List가 된다.
+
+---
+
+ConstantPool
+===
+먼저 String은 불변클래스이다. 그 이유를 알아보자.
+
+String이 불변클래스인 이유는 상수화되어 관리하려는 목적도 있지만, 보안적인 부분도 크다.
+
+DB에 String으로 존재하는 중요한 데이터들이 변경가능할 여지가 있다면 보안적으로 위험한 상황에 놓이게된다.
+
+또한 동기화적인 이유도 있는데 String이 변경가능하다면 비동기적인 처리에서 데이터를 안정적으로 관리하기 힘들 수 있다.
+
+이제 StringConstantPool을 알아보자.
+
+```java
+String str = "hello";
+```
+위 문자열은 문자열 리터럴로 상수화되어 JVM 메모리영역중에 Heap메모리영역에 저장된다.(java 5이전엔 Static영역, 메모리부족현상 방지를 위해 이사)
+
+Heap메모리에 들어간 StringConstantPool은 가변적으로 메모리를 조절할 수 있어서 더 많은 ConstantPool을 가질 수도 더 적은 ConstantPool을 가질 수도 있게된다.
+
+기존의 Static영역은 메모리의 영역이 불변이기때문에 메모리가 넘칠 여지가 있었지만 이젠 그런 걱정이 사라졌다.왜냐하면 Heap영역은 GC가 작동하는 영역으로 사용하지않는 상수는 수거해가기때문이다.
+
+또한 StringConstantPool은 내부적으로 HashTable구조를 가진다.
+
+HashTable은 값을 hasing하여 key값으로저장하고, key값을 배열로 저장해 key값을 빠르게 찾을 수 있다. 그렇기때문에 성능이 보장된다.(배열은 List타입보다 자원을 검색하는 능력이 뛰어나다. 메모리공간이 인접해있기때문)
+
+일반적으로 언급하는 ConstantPool은 Method Area에 있고 GC가 수거해가지못하는 영역이다.
+Type, Field, Method의 정보들을 담고있다.
+
+---
+
+String / StringBuilder / StringBuffer
+===
+과연 위 세가지 클래스의 차이점이 무엇일까?
+
+```java
+String str = new String("a");
+str = str + "b";
+//결과 str = "ab";
+```
+그저 단순히 a에 b를 덧붙이고 다시 str에 저장하는 코드다. 단순하게 a와b를 붙이는 방식에는 큰 문제점이 없겠지만 극단적으로 문자를 10000번 연결한다고 가정해보자.
+
+String은 불변클래스다. 한 번 만들어지면 수정이 불가능한 객체라는 뜻이다.
+
+a에대한 String클래스가 만들어지고 b를 더하면 "ab"라는 문자열이 새롭게 생성되어 str에 다시 저장된다. 10000번 연결된다면 10000개의 인스턴스를 생성하고 10000번째 문자열을 str에 저장된다.
+
+9999개의 인스턴스는 임시 가비지에 저장되어 GC의 수거를 기다린다. 연결하는 문자열이 많을 수록 메모리측면에서 부담이 가는 작업임이 분명하다.
+
+그렇다면 StringBuilder와 StringBuffer는 어떨까?
+
+StringBuilder와 StringBuffer는 가변성을 가지기때문에 .append()를 호출하면 새로운 객체를 반환하지않고 원래 인스턴스에 문자열을 추가해준다.
+
+StringBuilder와 StringBuffer의 차이점은 StringBuilder는 thread-safe하지 않고 싱글스레드 환경에 적합하다. (싱글스레드에선 StringBuffer보다 성능이 뛰어나다.)
+
+반대로 StringBuffer는 동기화 키워드를 제공해 thread-safe하고 멀티스레드환경에 적합하다.
+
+thread-safe를 간단하게 알아보자.
+
+멀티스레드 환경에선 다수의 스레드가 자원을 공유하며 작업하고 스레드의 작업우선순위는 OS스케쥴러가 제공하기때문에 무작위적으로 스레드는 작업하게된다.
+
+스레드는 자원을 공유하기때문에 여러가지 문제점이 발생할 수 있는데 가령 A 스레드가 공유자원으로 작업을 하다가 작업을 끝마치지못하고 다음 우선순위인 B스레드로 우선순위가 넘어가면 B스레드도 공유된자원으로 작업할 때 문제가 발생할 수 있다.
+
+이런 문제점들을 예방하기위해 동기화처리를 해주게되는데, 하나의 작업단위를 동기화처리를 해주게되면 하나의 스레드만 해당 작업을 진행할 수 있어 다른 스레드의 개입을 차단할 수 있다.
+
+그런데 java 9 이후부터 문자열을 +로 연결해줄때 StringConcatFactory클래스를 만들어 makeConcatWithConstants메서드를 호출해 StringBuilder와 같이 객체를 새로 생성해 반환해주는것이 아니라 문자열을 그대로 더해주는 방식으로 변화되었다.
+
+실제로 + 연산을 통한 문자열결합은 1000회 이하에선 StringBuilder와 비슷한 성능을 보인다. 하지만 1000회가 넘어가면 StringBuilder와 성능차이가 벌어지기 시작하니 자신이 어느정도로 문자열을 결합할지 잘 판단하고 사용해야한다.
+
+(추가 String클래스에서 제공하는 Concat함수는 java5 이전에 + 형식으로 문자열을 결합하는 방식과 동일하다.)
+
+---
+
+WeakReference
+===
+자바가 참조를 하는 방식은 3가지가 존재한다.
+
+1. Strong Reference (강한참조)
+
+    ```java
+    Integer a = new Integer(1);
+    ```
+    위 예시는 강한 참조의 예시로 GC의 수거대상이되지않는다.
+
+    다만 a=null로 만들어주면 (명시적으로) 가비지컬렉터의 수거대상이 된다. 이 때 주의해야할 점은 a에 대한 모든 참조가 끊어져야한다. 다른 곳에서 참조를 하고 있다면 절대 수거대상이 되지 않는다.
+
+2. Soft Reference (부드러운 참조)
+ 
+    ```java
+    SoftReference<Integer> soft = new SoftReference<Integer>(a);
+    ```
+    위 예시는 부드러운 참조의 예시다. 객체가 더 이상 필요가없어져서 a==null 상태가되면 GC는 수거대상으로 여기지만, 중요한 점은 **메모리가 부족하지않으면 수거하지않는다.**
+
+3. Weak Reference
+    ```java
+    WeakReference<Integer> soft = new WeakReference<Integer>(a);
+    ```
+    약한 참조 또한 a == null 상태가되면 GC가 수거대상으로 여기고, 메모리가 부족한지 여부에 상관없이 GC의 수거대상이된다.
+
+하지만 위 예시들은 너무나 단조롭다. 실제로 코딩을하다보면 객체들간의 관계가 위처럼 단조로울 수가 없다.
+
+위 예시들은 모두 null로 해제를 하면 GC의 대상이 된다는 공통점이 있다. 아니 그렇다면 도대체 왜 약한참조와 부드러운참조를 사용하는걸까?
+
+```java
+Fruit apple;
+Fruit orange;
+
+Fruit strong;
+WeakReference weak;
+
+public void Test() {
+    apple = new Fruit("apple");
+    orange = new Fruit("orange");
+
+    strong = apple;
+    weak = new WeakReference(orange);
+
+    Console.WriteLine(strong == null ? "null" : strong.name);//apple 출력
+    Console.WriteLine(weak == null ? "null" : weak.name);//orange 출력
+
+    apple = null;
+    ornage = null;
+
+    //GC 강제 수행
+    System.GC.Collect(0, GCCollectionMode.Forced);
+    System.GC.WaitForFullGCComplete();
+
+    //강한참조는 strong이 참조하고 있으므로 객체가 해제되지 않았지만,
+    //약한참조는 원본에 null 값을 넣으면 weak이 참조하고 있어도 객체가 해제된다.
+    Console.WriteLine(strong == null ? "null" : strong.name);//apple 출력
+    Console.WriteLine(weak == null ? "null" : weak.name);//null 출력
+```
+apple은 Fruit 인스턴스를 참조하고있고 orange도 Fruit 인스턴스를 참조하고있다. (당연한 말이지만 서로 다른 Fruit인스턴스를 참조중이다.)
+
+**이 예시코드와 위 예시의 차이는 apple이 참조하는 Fruit을 다른 변수(strong) 역시 참조하고있다는 점이다.**
+
+이때 apple을 null로 해제하면 메모리가(Fruit 인스턴스가)수거될까?
+
+강한참조가 여전히 존재하므로(strong이 여전히 참조중) 수거되지않는다.
+
+하지만 orange가 참조하는 Fruit 인스턴스는 WeakReference가 참조하고있다.
+
+**여기서 orange가 null로 해제된다면 Fruit인스턴스를 WeakReference만이 참조하게된다. 이렇게 되면 JVM은 Fruit인스턴스를 수거대상으로 인식한다.**
+
+여기서 핵심은 해당 인스턴스를 참조하는 변수가 WeakReference로 **유일**할 경우에 GC의 수거대상이된다.
+
+물론 약한참조의 경우 메모리 부족여부에 상관없지만 부드러운참조는 메모리가 부족할때에만 수거를 진행한다.
+
+```java
+public static void main(String[] args) {
+        WeakHashMap<Fruit, String> map = new WeakHashMap<>();
+        Fruit apple = new Fruit("apple");
+        Fruit orange = new Fruit("orange");
+        map.put(apple, "test a");
+        map.put(orange, "test b");
+        apple = null;
+        System.gc();
+        map.entrySet().forEach(System.out::println );
+    }
+```
+
+이 경우도 마찬가지다. WeakHashMap은 내부에서 WeakReference를 이용하는데 Key가 WeakReference 특징을 갖게된다.
+
+apple이 가르키는 Fruit인스턴스를 Key또한 가르키고있다.
+
+WeakHashMap이 아닌경우를 생각해보면 강한참조가 2번일어나고있다. 그러므로 apple을 null로 해제하더라도 강한참조가 남아있으므로 Fruit인스턴스는 그대로 남아있고 Key가 여전히 참조하고있다.
+
+WeakHashMap의 경우엔 Key가 Fruit을 약하게 참조하고있음으로 apple을 null로 참조해제하게되면 Fruit을 참조하는 객체가 Key로 유일하기때문에 수거대상이된다. ( 핵심은 Fruit을 참조하는 객체가 약한참조객체로 유일할 때이다 )
+
+이렇게 참조관계가 이중 이상인 경우에 약한참조와 부드러운참조 강한참조의 차이가 발생한다. 간단한 참조관계에선 이해하기가 어려울 수 있다.
+
+자바에서 제공하는 참조유형은 한 가지 더 있다.
+
+Phantom Reference인데 이 참조유형은 위에서 소개한 유형들과는 조금 독특한 형태를 가지고있다.
+
+위 세가지 유형은 메모리가 수거되긴 할텐데, 다음 GC의 사이클이 언제 돌지 알 수가 없다. 약한참조로 연결되어 분명 GC의 제거대상임은 분명하지만 **언제** 수거될지 분명하지않다.
+
+코드를 작성하다가 꼭 데이터가 지워지고난 뒤에 새로운코드를 작성해야하는 상황이 있다면, 즉 데이터의 제거가 확실해진 뒤에 작성해야하는 코드가 있다면 Phantom Reference를 사용하면된다.
+
+```java
+public class PhantomReference<T> extends Reference<T> {
+  // ...
+
+  public T get() {
+    return null;
+  }
+}
+public class PhantomReferenceExample {
+  public static void main(String[] args) {
+    ReferenceQueue<Object> referenceQueue = new ReferenceQueue<>();
+    List<PhantomReference<Object>> phantomReferences = new ArrayList<>;
+    List<Object> largeObjects = new ArrayList<>();
+
+    for (int i = 0; i < 3; i++) {
+      /* 1) Strong Reference로 생성 */
+      Object largeObject = new Ojbect();
+
+      /* 2) 생성한 largeObject를 largeObjects에 담기 */
+      largeObjects.add(largeObject);
+
+      /* 3) Phantom Reference로 생성 */
+      phantomReferences.add(new PhantomReference<>(largeObject, referenceQueue));
+    }
+
+    /*
+      4) largeObjects에 null 할당
+      Strong Reference인 largeObject를 unreachable 상태로 만듬
+    */
+    largeObjects = null;
+
+    /*
+      5) GC를 실행합니다.
+      `System.gc()`을 호출 하더라도 바로 GC가 동작한다고 보장할수는 없지만, 예제상 GC가 동작하였다고 가정함
+    */
+    System.gc();
+
+    for (PhantomReference<Object> phantomReference: phantomReferences) {
+      /* 6) phantomReference가 ReferenceQueue에 들어갔는지 확인함 */
+      if (phantomReference.isEnqueued()) {
+        System.out.println("enqueued");
+      }
+    }
+
+    Reference<?> referenceFromQueue;
+    while ((referenceFromQueue = referenceQueue.poll()) != null) {
+      /* 7) phantomReference 제거 전 수행할 업무를 처리함 */
+      ((LargeObjectFinalizer) referenceFromQueue).finalizeResources();
+
+      /* 8) phantomReference 객체를 수동으로 clear() */
+      referenceFromQueue.clear();
+    }
+  }
+
+  public static class LargeObjectFinalizer {
+    public LargeObjectFinalizer(Object referent, ReferenceQueue<? super Object> q) {
+      super(referent, q);
+    }
+
+    public void finalizeResources() {
+      System.out.println("clearing...");
+    }
+  }
+}
+```
+
+
+Phantom Reference는 필수적으로 referenceQueue를 생성자에 넘겨주어야한다. ReferenceQueue는 메모리가 제거되는 대상을 큐에 넣어주게되고 이렇게 가시적으로 메모리의 제거가 확실해지면 다음 작업을 안전하게 진행할 수 있다.
+
+사실 약한참조와 부드러운참조도 ReferenceQueue를 가질 수 있지만 필수적이진않다.
+
+WeakHashMap
+---
+WeakHashMap은 위에서 설명한 약한 참조 특징을 갖는 HashMap이다.
+
+보통 HashMap은 Key와Value를 put하고나서 사용여부는 전적으로 프로그래머에게 달려있다. 또 한 강한참조로 엮여있기때문에 사용하지않더라도 GC가 수거해가지않는다.
+
+하지만 WeakHashMap의 경우엔 Key에 해당하는 객체를 null로 해제해주면 GC의 수거대상이되어 메모리가 해제된다.
+
+(참고 : WeakHashMap에서 key == null로 객체를 해제하고 System.gc()를 call하는 예시들이 있지만,GC가 활성화되면 모든 프로세스가 중단되고 실행되기때문에 성능에 막대한 영향을 미침으로 사용을 자제하자! )
+
+----
+
+List size의 불변
+---
+List타입 참조변수를 final로 설정하면 참조변수에 다른 인스턴스를 할당하는 것은 불가능하다.
+
+**하지만 List가 불변인것이 아니라 참조변수가 불변인 것이다.** List 자체는 add나 remove로 얼마든지 늘어나고 줄어들 수 있다.
+
+이 때 add를 하거나 remove로 List의 사이즈를 변경하려하면 예외를 던지게하는 방법이 있다.
+
+List.of("a","b")를 사용해 리스트를 초기화하게되면 그 이후엔 크기를 늘리거나 줄일 수 없다. 즉 진정한 불변객체가 되는 것이다.
+
+Map과 Set도 동일하게 of()메서드를 사용하면 불변객체로 만들어줄 수 있다.
+
+---
+
+Synchronized 키워드
+---
+
+Synchronized 키워드는 메서드레벨에 붙는 키워드로 해당 메서드를 동기화처리를 해준다.
+
+어떤 방식으로 동기화처리를 하는지 알아보자.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        A a = new A();
+        Thread thread1 = new Thread(() -> {
+            a.run("thread1");
+        });
+
+        Thread thread2 = new Thread(() -> {
+            a.run("thread2");
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+}
+
+public class A {
+
+    public synchronized void run(String name) {
+        System.out.println(name + " lock");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(name + " unlock");
+    }
+}
+```
+스레드는 2개를 생성했고 A라는 하나의 인스턴스만 생성했다.
+
+a에는 synchronized 키워드가 붙어있음으로 해당 메서드는 하나의 스레드가 락을 걸면 다른 스레드는 접근이 불가능하다고 예측할 수 있다.
+
+스레드가 메서드의 끝에 도달하면 lock을 반납할 것이고 thread2가 다시 락을 걸고 작업을 수행할 것이다.
+
+```java
+// 출력 결과
+thread1 lock
+thread1 unlock
+thread2 lock
+thread2 unlock
+```
+
+예상한대로 출력이 됐다. 그렇다면 A라는 인스턴스를 공유하는 상황이 아닌 두 개의 인스턴스를 각자 실행시킨다면 어떨까?
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        A a1 = new A();
+        A a2 = new A();
+        Thread thread1 = new Thread(() -> {
+            a1.run("thread1");
+        });
+
+        Thread thread2 = new Thread(() -> {
+            a2.run("thread2");
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+}
+```
+
+a1 과 a2를 따로 나눠 run을 호출했다. 결과는 아래와 같다.
+
+```java
+// 출력 결과
+thread2 lock
+thread1 lock
+thread1 unlock
+thread2 unlock
+```
+
+thread2가 lock을 풀지도않았는데 thread1의 lock이 출력된 결과를 보면 **다른 인스턴스에대해선 lock을 공유하지 않다는걸 알 수 있다.**
+
+그렇다면 synchronized 키워드는 인스턴스 접근자체를 막는걸까?
+
+```java
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+        A a = new A();
+        Thread thread1 = new Thread(() -> {
+            a.run("thread1");
+        });
+
+        Thread thread2 = new Thread(() -> {
+            a.print("thread2");
+        });
+
+        thread1.start();
+        Thread.sleep(500);
+        thread2.start();
+    }
+}
+
+public class A {
+
+    public void print(String name){
+        System.out.println(name + " hello");
+    }
+
+    public synchronized void run(String name) {
+        System.out.println(name + " lock");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(name + " unlock");
+    }
+}
+```
+
+이번엔 상황이 조금 다르다. synchronized 키워드가 붙은 메서드와 붙지 않은 메서드가 있고, thread2에선 키워드가 붙지않은 메서드를 호출하고있다.
+
+synchronized가 인스턴스 접근자체에 lock을 건다고 가정한다면 lock과 unlock이 호출된 이후에 hello가 호출되어야할 것이다.
+
+출력결과를 확인해 보자.
+ ```java
+// 출력
+thread1 lock
+thread2 hello
+thread1 unlock
+ ```
+
+ 중간에 hello가 출력되었다.
+
+ 정리하자면 synchronized는 인스턴스에 락을 걸어준다. (락은 인스턴스당 하나 뿐) 하지만 synchronized가 붙은 메서드끼리만 락을 공유하지 붙지 않은 메서드에대해선 락을 공유하지않는다.
+
+ 즉 synchronized를 협업시에 사용할 땐 주의깊게 사용해야한다. 동기화 처리를 이용해 프로그램을 작성해야하는 상황이있을 때 10명중 1명이라도 synchronized키워드를 붙지지않는다면 동기화자체가 망가지기때문이다.
+
+ 이번에는 sychronized 키워드와 static 키워드가 붙는다면 어떤 방식으로 lock이 걸리는지 확인해보자.
+
+ ```java
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+        A a1 = new A();
+        A a2 = new A();
+        Thread thread1 = new Thread(() -> {
+            a1.run("thread1");
+        });
+
+        Thread thread2 = new Thread(() -> {
+            a2.run("thread2");
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+}
+public class A {
+
+    public static synchronized void run(String name) {
+        System.out.println(name + " lock");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(name + " unlock");
+    }
+}
+ ```
+ static은 기본적으로 인스턴스의 생성과는 상관이없다.
+
+ 출력결과부터 확인해보자.
+
+ ```java
+// 출력 결과
+thread1 lock
+thread1 unlock
+thread2 lock
+thread2 unlock
+ ```
+
+ 서로 다른 인스턴스를 생성했음에도 thread1의 lock이 풀린뒤에 thread2의 lock이 걸린 것을 볼 수 있다.
+
+ 즉 static 과 synchronized 키워드가 함께 붙으면 클래스레벨에서 lock을 걸게된다.
+
+---
+HashMap/HashTable/ConcurrentHashMap & 해시충돌과 해결방안
+---
+
+우선 각각의 특징을 자세히 알아보기전에 먼저 내가 알고 있는 점들을 정리해보자.
+
+우선 HashMap 과 HashTable의 가장 큰 차이점은 Thread-safe 하느냐 그렇지 않느냐로 구분 할 수 있다.
+
+```java
+    //HashTable 내부
+    public synchronized int size() {
+        return count;
+    }
+    public synchronized boolean isEmpty() {
+        return count == 0;
+    }
+    public synchronized Enumeration<K> keys() {
+        return this.<K>getEnumeration(KEYS);
+    }
+    public synchronized Enumeration<V> elements() {
+        return this.<V>getEnumeration(VALUES);
+    }
+```
+
+HashTalbe의 일부 메서드인데 모두 synchronized 키워드가 붙어있다. 
+
+하지만 HashTable과 동일한 메서드를 HashMap에서 살펴보면 synchronized 키워드가 붙지 않는 것을 볼 수 있다.
+
+정리하자면 HashTable은 스레드에 안전 고로 멀티스레드환경에 적합하다. HashMap은 스레드에 안전하지 않고 싱글스레드환경에 적합하다.
+
+그렇다면 HashTable보다는 성능면에서 뛰어나고 멀티스레드환경에 적합한 클래스는 없을까?
+
+ConcurrentHashMap이 바로 성능도 HashTable보다 뛰어나고 멀티스레드환경에서 사용하는 클래스이다.
+
+세 클래스들을 알아보기 이전에 HashMap의 구조에대해 알아보자.
+
+**HashMap은 기본적으로 배열을 사용한다.**
+
+Key - Value로 이루어져 있으며 Key값을 해싱함수로 인덱스를 구한 뒤에 해당 인덱스에 Value를 집어 넣는 구조다.
+
+이 때 두 가지 조건이 있다.
+
+```java
+//HashMap 내부
+static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16); // 비트연산
+    }
+```
+키값을 해싱한 후 리턴받는 값은 **정수** 여야만 한다.
+
+또 한가지 조건은 인덱스는 배열의 크기를 넘어서는 안된다. (당연)
+
+그렇다면 key와 value는 어느곳에 저장이되는 것일까?
+```java
+transient Node<K,V>[] table;
+```
+Node 라는 객체배열을 table이라는 참조변수로 선언하여 사용하는것을 볼 수 있다.
+
+    즉, key와 value를 가지는 객체(node)들의 배열(table)을 사용한다.
+
+Node클래스의 내부를 자세히봐보자.
+
+```java
+static class Node<K,V> implements Map.Entry<K,V> {
+        final int hash;
+        final K key;
+        V value;
+        Node<K,V> next;
+}
+```
+
+key와 value 이외에도 hash값 next라는 필드가 더 있는 것을 볼 수 있는데 **next라는 필드가 해시충돌을 해결하는 하나의 방법이 된다.**
+
+자 이제 HashMap이 내부적으로 어떻게 저장되는지 알았으니 해시충돌에 대해 알아보자.
+
+해시값은 키값을 해싱한 결과로 굉장히 많은 결과값을 갖지만 아쉽게도 인덱스는 한정돼있다.
+
+그렇다는 말은 서로 다른 키더라도 해싱한 결과 즉 해시값 또 다른 말로 인덱스가 겹칠 수 있다는 말이다.
+
+배열에서 인덱스가 겹친다니 ... 말만 들어도 큰 일이 날 것 같다.
+
+이런 해시충돌을 해결하기 절차가 있다.
+
+1. 첫 번째 : 테이블의 75% 이상 채워지면 충돌 확률이 급격히 높아진다. 확률적으로 이미 점유하고있는 인덱스가 많을 수록 새로 들어오는 key의 해싱값이 동일한 인덱스로 지정될 확률이 자연스레 높아진다. **그래서 단순하게 배열의 크기를 증가시켜준다.**
+
+```java
+//HashMap resize 메서드 내부
+else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                     oldCap >= DEFAULT_INITIAL_CAPACITY)
+                newThr = oldThr << 1; // double threshold
+```
+
+75% 임계점을 넘으면 HashMap은 2배의 크기의 Table을 생성하는데 이 때 쉬프트연산자로 2배 증가시켜준다. (2진수에서 1을 한자리씩 왼쪽으로 밀어준다.)
+
+2. 두 번째 : 테이블의 크기를 늘려줘도 해시값이 충돌할 확률은 여전히 존재한다. 이미 충돌했다면 그에대한 대안이 있어야한다.
+
+그 대안은 아까 위에서 설명한 Node클래스의 필드 중에서 next라는 필드가 해결한다.
+
+만약 해시값이 같아 같은 인덱스를 배정받았다면 이미 점유하고 있는 Node인스턴스의 next필드에 다음 지정될 Node의 주소를 넘겨준다.
+
+링크드리스트의 구조라고 생각하면 된다.
+
+3. 세 번째 : 링크드리스트는 탐색에 걸리는 시간이 굉장히 길다. 추가와 삭제에는 빠르지만 n개의 데이터가 있다면 시간 복잡도는 O(n)이 되므로 일정 충돌 수가 넘어가면 **데이터를 다른 방식**으로 저장한다.
+
+```java
+//HashMap 내부
+static final int MIN_TREEIFY_CAPACITY = 64;
+```
+
+실제로 64가 넘게되면 데이터 구조를 변경한다.
+
+```java
+final void treeifyBin(Node<K,V>[] tab, int hash) {
+        int n, index; Node<K,V> e;
+        if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
+            resize();
+        else if ((e = tab[index = (n - 1) & hash]) != null) {
+            TreeNode<K,V> hd = null, tl = null;
+            do {
+                TreeNode<K,V> p = replacementTreeNode(e, null);
+                if (tl == null)
+                    hd = p;
+                else {
+                    p.prev = tl;
+                    tl.next = p;
+                }
+                tl = p;
+            } while ((e = e.next) != null);
+            if ((tab[index] = hd) != null)
+                hd.treeify(tab);
+        }
+    }
+```
+
+위 코드에서 replacementTreeNode 메서드가 Node객체를 TreeNode로 바꿔주게된다.
+
+TreeNode는 Node객체를 상속한 클래스로 간단하게 생각하면 Node객체에서 몇 가지 기능을 추가한 클래스이다. (Tree 구조의 클래스)
+
+do while 문을 돌며 충돌한 인덱스의 모든 Node들을 순회하며 TreeNode로 바꿔준다.
+
+```java
+TreeNode<K,V> replacementTreeNode(Node<K,V> p, Node<K,V> next) {
+        return new TreeNode<>(p.hash, p.key, p.value, next);
+    }
+```
+
+위 코드처럼 기존 Node객체의 해쉬값 키값 value next 4가지 필드를 모두 생성자에 넘겨준다.
+
+후에 treeify 메서드를 이용해 트리화를 마치게되는데 트리화가 완료되면 시간복잡도는 O(log n)이 되게된다.
+
+위 세가지 절차를 Chaining 방식이라고 부른다.
+
+이 외에도 Linear probing, Quadratic probing, Double hasing 이 존재한다.
+---
+
+Linear probing은 충돌이 발생하면 빈 slot을 선형으로 찾아서 그 곳에 값을 저장한다. 선형으로 탐색한다는 말은 충돌이 발생한 인덱스로부터 +1씩 이동해 값의 유무를 판단한다.
+
+하지만 선형탐색으로 값을 추가하게되면 군집화가 발생한다. 충돌이 발생한 주변 인덱스에 데이터를 계속해서 넣기때문에 한 구간은 지속적으로 데이터가 저장되어 탐색시간을 증가시키는데 최악의 경우엔 전체를 탐색하게될 수 있다.
+
+Linear probing이 선형으로 탐색했다면 Quadratic은 이차식을 이용해 탐색한 후 그 곳에 값을 넣는다. Linear probing보다는 군집화의 정도가 낮을 수 있지만 비어있는 공간을 못찾을 확률이 존재한다. 선형으로 모든 공간을 확인하지않기때문이다.
+
+Double hasing은 기존 해시함수 외에 보조적인 해시함수를 추가해서 두 값을 합한 뒤에 해시값을 도출해내는데 충돌과 군집화를 막아내기엔 좋지만 해시함수를 두 가지 사용한다는 점에서 성능에 악영향을 줄 가능성이 매우 높다.
+
+hashmap의 구조와 해시충돌의 해결법까지 알아보았다. 이제 ConcurrentHashMap은 hashmap과 어떻게 다른지 알아보자.
+--
+
+hashmap은 스레드에 안전하지않고 hashtable은 스레드에 안전하다. 하지만 hashtable은 map전체에 락을 걸기때문에 성능이 떨어질 수 밖에없고 hashmap은 아예 동기화를 지원하지않는다.
+
+hashtable보다 성능이 좋고 스레드에 안전한 자료구조가 바로 concurrenthashmap이다.
+
+  ![img](./hashmap.png)
+
+  HashMap을 synchronized해주기위해선 버킷 전체에 락을 걸고 다른 스레드는 버킷전체에 접근이 불가능하다.
+
+  하지만 concurrenthashmap을 보자.
+
+![img](./concurrenthashmap.png)
+
+concurrent hashmap은 버킷전체에 락을 걸지않고 버킷하나하나에 락을 걸기때문에 여러 스레드가 접근할 수 있다.
+
+concurrent hashmap이 성능이 좋은 이유가 여기에 있는데 맵 전체에 락을 걸었다면 스레드간에 경합이 발생하므로 성능저하가 일어나지만, concurrent hashmap은 버킷단위로 락을 걸기때문에 경합이 줄어든다.
+
+심지어 concurrenthashmap은 읽기작업엔 락을 걸지않고 쓰기 작업에만 락을 건다.
+
+더 자세히 알아보자면 쓰기작업에도 모두 락을 거는 것은 아니다.
+
+엔트리를 삽입할 때 비어있는 버킷인지 값이 있는 버킷인지를 판단하게되는데 비어있는 버킷에는 락을 걸지않고 CAS연산을 이용해 작업하고 값이 있는 버킷에만 락을 걸고 다른 스레드의 접근을 막는다.
+
+CAS연산이란 Compare And Swap의 약자로 비교 후에 값을 교환한다는 의미이다.
+
+```java
+public class Counter {
+    private volatile int count;
+
+    public void increment() {
+        int oldValue;
+        int newValue;
+        do {
+            oldValue = count;
+            newValue = oldValue + 1;
+        } while (!compareAndSwap(oldValue, newValue));
+    }
+
+    private synchronized boolean compareAndSwap(int oldValue, int newValue) {
+        if (count == oldValue) {
+            count = newValue;
+            return true;
+        }
+        return false;
+    }
+}
+```
+
+volatile 변수에대해 알아야하는데 volatile은  메인메모리에 직접 올라간다. 
+
+스레드자체가 cpu캐시 메모리를 가지기때문에 일반 변수가 변화되었을 때 다른 스레드가 변수의 변화를 알아차리기 어렵지만 volatile은 메인메모리에 직접올라가기때문에 모든 스레드가 해당 값의 변경사항을 알아차릴 수 있다.
+
+volatile을 캐싱한 값과 메인메모리에올라온 값이 다르면 스레드는 다시 volatile변수의 값을 읽어오도록되어있기때문에 항상 최신의 값을 유지할 수 있는 것이다.
+
+해당 비교는 JVM이 담당하도록 설계되어있다.
+
+이렇게 synchronized를 사용하지 않고 먼저 체크한 후에 행동을 취하는 방식을 CAS라고 한다.
+
+이렇게 빈 버킷에 값을 저장할 때는 null이라는 기대값과 비교를해서 비어있는 경우엔 동기화하지않고 값을 저장하고 이미 값이 있는 경우엔 동기화처리를 한 뒤에(세그먼트 단위로) 값을 저장한다.
+
+또 한가지 중요한 점은 concurrenthashmapd은 세그먼트 단위로 락을 건다는 점인데 위에서 설명할땐 단순히 버킷단위로 락을 건다고 했지만 사실 여러 버킷을 하나로 묶은 단위인 세그먼트 단위로 락을 걸게된다.
+
+세그먼트 단위는 내부적으로 기본 16개로 설정이 되어있다. 만약 1024개의 엔트리가 있다면 세그먼트는 64개가 되는것이다.
+
+```java
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>(16, 0.75f, 4);
+```
+
+위 코드는 ConcurrentHashMap의 생성자인데 3번째 파라미터가 concurrencylevel로 세그먼트의 갯수를 지정할 수 있다.
+
+두 번째 파라미터는 load factor로 맵의 크기가 얼마나 가득차면 리사이징을 할지 결정하는 파라미터다. 위에선 75프로가 기준이 된다.
+
+내가 사용할 데이터의 크기를 가늠하고 적절한 load factor와 세그먼트레벨을 잘 결정해줘야한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
